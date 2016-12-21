@@ -53,7 +53,7 @@ public class RedisTest {
 
         String string = jedis.get("name");
         System.out.println(string);
-        jedisPool.returnResourceObject(jedis);
+        jedisPool.returnResourceObject(jedis);//退还给连接池
 
 
     }
@@ -63,7 +63,7 @@ public class RedisTest {
      * @throws Exception
      */
     @Test
-    public void testKeepUserVisit() throws Exception {
+    public void testExpire() throws Exception {
         jedis.auth("admin");
         for(int i=0;i<20;i++){
             boolean checkLogin = checkLogin("192.168.1.1");
@@ -88,12 +88,18 @@ public class RedisTest {
         return true;
     }
 
+    /**
+     * 事务
+     * @throws Exception
+     */
     @Test
     public void testTransaction() throws Exception {
         jedis.auth("admin");
+
         String value = jedis.get("age");
         System.out.println("休息一会。。。");
         Thread.sleep(5000);
+
         Transaction multi = jedis.multi();
         int parseInt = Integer.parseInt(value);
         parseInt++;
@@ -101,12 +107,13 @@ public class RedisTest {
 
         List<Object> exec = multi.exec();
         System.err.println(exec);
-
+        System.out.println(jedis.get("age"));
     }
 
     @Test
     public void testWatch() throws Exception {
         jedis.auth("admin");
+
         jedis.watch("age");
         String value = jedis.get("age");
         System.out.println("休息一会。。。");
@@ -123,7 +130,4 @@ public class RedisTest {
         }
 
     }
-
-
-
 }
