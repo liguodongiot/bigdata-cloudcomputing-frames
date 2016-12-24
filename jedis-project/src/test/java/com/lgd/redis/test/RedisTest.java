@@ -52,6 +52,7 @@ public class RedisTest {
         Jedis jedis = jedisPool.getResource();
 
         String string = jedis.get("name");
+
         System.out.println(string);
         jedisPool.returnResourceObject(jedis);//退还给连接池
 
