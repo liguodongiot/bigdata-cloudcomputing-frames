@@ -1,4 +1,4 @@
-package base
+package fp
 
 /**
   * Created by liguodong on 2016/12/28.
@@ -96,33 +96,52 @@ object practiceMain extends App{
 
   //化简：reduce
   //将非特定顺序的二元操作应用到所有元素
+  val ls0 = List(1,2,3,4,5)
+  ls0.par.sum
 
-  //安装特点的顺序
+  ls0.par.reduce(_+_)
+
+  //按照特定的顺序
+  ls0.reduceLeft(_+_)
 
 
   //折叠：有初始值（无特定顺序）
+  lst0.par.fold(0)(_+_)
 
   //折叠：有初始值（有特定顺序）
-
-
+  lst0.foldLeft(100)((x,y)=>x+y)
+  lst0.foldLeft(0)(_+_)
 
   //聚合
   val arr = List(List(1, 2, 3), List(3, 4, 5), List(2), List(0))
 
+  //第一个是先将里面元素求和，第二个函数再将外面求和
+  //val result2 = arr.aggregate(0)(_+_.sum,_+_)
+
+  val result2 = arr.aggregate(0)(_+_.reduce(_+_),_+_)
+  println(result2)
+
+  val result3 = arr.aggregate(10)(_+_.reduce(_+_),_+_)
+  println(result3)
+  val result4 = arr.par.aggregate(10)(_+_.reduce(_+_),_+_)
+  println(result4)
 
   val l1 = List(5,6,4,7)
   val l2 = List(1,2,3,4)
+
   //求并集
+  val r1 = l1.union(l2)
 
   //求交集
+  val r2 = l1.intersect(l2)
 
   //求差集
+  val r3 = l1.diff(l2)
+  println(r3)
 
-  //println(r3)
 
 
-
- // val lines = List("hello tom hello jerry", "hello jerry", "hello kitty")
+  // val lines = List("hello tom hello jerry", "hello jerry", "hello kitty")
   //lines.flatMap(_.split(" ")).map((_, 1)).groupBy(_._1).mapValues(_.foldLeft(0)(_+_._2))
   //lines.flatMap(_.split(" ")).map((_, 1)).groupBy(_._1).map(t=>(t._1, t._2.size)).toList.sortBy(_._2).reverse
 
