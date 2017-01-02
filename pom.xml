@@ -13,19 +13,9 @@
     <modules>
         <module>spark-project</module>
         <module>jedis-project</module>
+        <module>kafka-project</module>
     </modules>
-    <dependencies>
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>2.5.1</version>
-        </dependency>
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>2.5.1</version>
-        </dependency>
-    </dependencies>
+
 
 
 </project>

@@ -67,6 +67,4 @@ class Task extends Actor{
       }
     }
   }
-
-
 }
