@@ -1,27 +1,21 @@
-package akka.communication
-
-import java.util.UUID
+package akka.rpc
 
 import akka.actor.{Actor, ActorSelection, ActorSystem, Props}
-import akka.rpc.RegisterWorker
 import com.typesafe.config.ConfigFactory
 
 
 /**
   * Created by liguodong on 2017/1/2.
   */
-class Worker(host:String,port:Int,val memory:Int,val cores:Int) extends Actor{
+class Worker(host:String,port:Int) extends Actor{
 
   var master: ActorSelection = _
-
-  val workerId  = UUID.randomUUID().toString
-
 
   //建立连接 找到Master
   @scala.throws[Exception](classOf[Exception])
   override def preStart(): Unit = {
     master = context.actorSelection(s"akka.tcp://MasterSystem@$host:$port/user/Master")
-    master ! RegisterWorker(workerId,memory,cores)
+    master ! "connect"
   }
 
   override def receive: Receive = {
@@ -38,9 +32,6 @@ object Worker{
     val port = args(1).toInt
     val hostMaster = args(2)
     val portMaster = args(3).toInt
-
-    val memory = args(4).toInt
-    val cores = args(5).toInt
 
 //    val host = "127.0.0.1"
 //    val port = "8899".toInt
