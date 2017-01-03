@@ -14,7 +14,7 @@ class Worker(host:String,port:Int) extends Actor{
   //建立连接 找到Master
   @scala.throws[Exception](classOf[Exception])
   override def preStart(): Unit = {
-    master = context.actorSelection("akka.tcp://MasterSystem@127.0.0.1:8888/user/Master")
+    master = context.actorSelection(s"akka.tcp://MasterSystem@$host:$port/user/Master")
     master ! "connect"
   }
 
