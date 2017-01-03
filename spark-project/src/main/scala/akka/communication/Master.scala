@@ -1,10 +1,7 @@
 package akka.communication
 
 import akka.actor.{Actor, ActorSystem, Props}
-import akka.rpc.RegisterWorker
 import com.typesafe.config.ConfigFactory
-
-import scala.collection.immutable.HashMap
 
 
 /**
@@ -12,10 +9,6 @@ import scala.collection.immutable.HashMap
   */
 
 class Master extends Actor{
-
-  //保存注册的worker
-  val idToWorker = new HashMap[String,_]()
-
 
   println("调用主构造器")
 
@@ -25,9 +18,7 @@ class Master extends Actor{
   }
 
   override def receive: Receive = {
-    case RegisterWorker(id,memory,cores) => {
-
-
+    case "connect" => {
       println("a client connected")
       //Master 反馈给 Worker
       //回复
@@ -42,10 +33,10 @@ object Master {
 
   def main(args: Array[String]): Unit = {
 
-    val host = args(0)
-    val port = args(1).toInt
-//    val host = "127.0.0.1"
-//    val port = "8888".toInt
+//    val host = args(0)
+//    val port = args(1).toInt
+    val host = "127.0.0.1"
+    val port = "8888".toInt
 
     //准备配置
     val configStr =

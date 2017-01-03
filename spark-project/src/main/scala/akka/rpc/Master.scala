@@ -3,6 +3,8 @@ package akka.rpc
 import akka.actor.{Actor, ActorSystem, Props}
 import com.typesafe.config.ConfigFactory
 
+import scala.collection.mutable
+
 
 /**
   * Created by liguodong on 2017/1/2.
@@ -11,6 +13,8 @@ import com.typesafe.config.ConfigFactory
 class Master extends Actor{
 
   println("调用主构造器")
+  //保存注册的worker
+  //val idToWorker = new mutable.HashMap[String,_]()
 
   @scala.throws[Exception](classOf[Exception])
   override def preStart(): Unit = {
@@ -18,7 +22,8 @@ class Master extends Actor{
   }
 
   override def receive: Receive = {
-    case "connect" => {
+    case RegisterWorker(id,memory,cores) => {
+
       println("a client connected")
       //Master 反馈给 Worker
       //回复
