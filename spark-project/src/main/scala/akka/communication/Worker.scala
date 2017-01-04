@@ -1,9 +1,6 @@
 package akka.communication
 
-import java.util.UUID
-
 import akka.actor.{Actor, ActorSelection, ActorSystem, Props}
-import akka.rpc.RegisterWorker
 import com.typesafe.config.ConfigFactory
 
 
