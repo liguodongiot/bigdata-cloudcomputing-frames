@@ -20,6 +20,8 @@ object HigherOrderMain extends App {
     (x,y)=> x+y
   }
 
+  val func2 = (x:Int,y:Int) => x+y
+
   println("------------------")
 
   println(arr.map(x=>func(x,x)).toBuffer)
