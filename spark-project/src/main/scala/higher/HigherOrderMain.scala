@@ -1,7 +1,7 @@
 package higher
 
 /**
-  * Created by yzm on 2017/1/4.
+  * Created by liguodong on 2017/1/4.
   */
 object HigherOrderMain extends App {
 
@@ -41,5 +41,14 @@ object HigherOrderMain extends App {
   def curlyMethod = (x:Int) =>{ x*x }
 
   println(arr.map(curlyMethod).toBuffer)
+
+
+  def xx(x:Int)(y:Int)(z:Int) =  x * (y + z)
+
+  println(xx(2)(2)(3))
+
+  val testXx = xx(5) _
+  println(testXx(2)(3))
+
 
 }
