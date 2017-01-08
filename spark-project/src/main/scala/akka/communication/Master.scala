@@ -33,10 +33,10 @@ object Master {
 
   def main(args: Array[String]): Unit = {
 
-    val host = args(0)
-    val port = args(1).toInt
-//    val host = "127.0.0.1"
-//    val port = "8888".toInt
+//    val host = args(0)
+//    val port = args(1).toInt
+    val host = "127.0.0.1"
+    val port = "8888".toInt
 
     //准备配置
     val configStr =
