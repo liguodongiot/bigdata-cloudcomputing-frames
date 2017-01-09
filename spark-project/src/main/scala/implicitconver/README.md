@@ -15,9 +15,9 @@ T : M  上下文界定  M是一个泛型类型.如：class Pair[T : Ordering]
 
 [T : ContextBound]      上下文界定
 
-[+T]
+[+T] 协变
 
-[-T]
+[-T] 逆变
 
 
 上界
