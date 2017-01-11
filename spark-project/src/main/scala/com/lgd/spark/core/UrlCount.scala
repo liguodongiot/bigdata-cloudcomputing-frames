@@ -29,7 +29,7 @@ object UrlCount {
     println(rddHost.collect().toBuffer)
 
     val rddTop3 = rddHost.groupBy(_._1).mapValues(it=>{
-      //Scala的排序
+      //Scala的排序，数据量太大可能内存溢出，可以用RDD的排序方法
       it.toList.sortBy(_._3).reverse.take(3)
     })
     println(rddTop3.collect().toBuffer)
