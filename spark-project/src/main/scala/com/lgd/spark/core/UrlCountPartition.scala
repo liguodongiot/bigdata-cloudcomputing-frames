@@ -26,6 +26,7 @@ object UrlCountPartition {
 
     //(java.wintfru.cn,http://java.wintfru.cn/java/course/javaee.shtml,1000)
 
+    //（K，V）类型
     val rddHostUrlCount = rddUnion.map(t =>{
       val (host,url,count) = (new URL(t._1).getHost,t._1,t._2)
       (host,(url,count))
