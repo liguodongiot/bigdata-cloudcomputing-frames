@@ -3,6 +3,7 @@ package com.lgd.spark.sql
 import org.apache.spark.sql.SparkSession
 
 /**
+  * Spark2.0
   * Created by liguodong on 2017/1/16.
   */
 object SparkSessionRddToDf {

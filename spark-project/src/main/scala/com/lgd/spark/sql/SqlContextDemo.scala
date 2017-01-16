@@ -32,6 +32,18 @@ object SqlContextDemo {
 
     sqlContext.sql("select * from t_person where age >= 20 order by age desc limit 2").show
     sqlContext.sql("desc t_person").show
+
+    //加载Json数据
+    val df = sqlContext.read.json("hdfs://ubuntu:8020/outputJson/")
+    //val df = sqlContext.read.format("json").load("hdfs://ubuntu:8020/outputJson/")
+    df.registerTempTable("person")
+    sqlContext.sql("select * from person where age < 30 and age >= 20 order by age desc limit 2").show
+
+
+    //默认parquet
+    //sqlContext.load("hdfs://ubuntu:8020/outputJson/")
+    //sqlContext.load("hdfs://ubuntu:8020/outputJson/","json")
+
     sc.stop()
 
   }
