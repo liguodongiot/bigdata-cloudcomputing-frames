@@ -1,5 +1,7 @@
 package com.lgd.spark.core
 
+import java.sql.{Connection, Date, DriverManager, PreparedStatement}
+
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
@@ -32,6 +34,35 @@ object IpLocation {
     }
     -1
   }
+
+  val data2Mysql = (iterator:Iterator[(String,Int)])=>{
+    var conn:Connection = null
+    var ps: PreparedStatement = null
+    val sql = "insert into ip_location_info(access_date,location,num) values (?,?,?)"
+
+    try {
+      conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/liguodong", "root", "liguodong")
+      iterator.foreach(lines =>{
+        ps = conn.prepareStatement(sql)
+        ps.setDate(1,new Date(System.currentTimeMillis()))
+        ps.setString(2,lines._1)
+        ps.setInt(3,lines._2)
+        ps.executeUpdate()
+
+      })
+    }catch {
+      case e : Exception => println("Mysql Exception")
+    }finally {
+      if(ps != null){
+        ps.close()
+      }
+      if(conn != null){
+        conn.close()
+      }
+    }
+
+  }
+
 
   def main(args: Array[String]): Unit = {
     System.setProperty("hadoop.home.dir", "E:\\install\\hadoop-2.6.0")
@@ -67,6 +98,12 @@ object IpLocation {
       info
     })
     println(rddResult.collect().toBuffer)
+
+    val rddSort = rddResult.map(t=>(t._3,1)).reduceByKey(_+_)
+    println(rddSort.collect().toBuffer)
+
+    //插入数据库，一个分区建立一个连接
+    rddSort.foreachPartition(it => data2Mysql(it))
 
     sc.stop()
   }
