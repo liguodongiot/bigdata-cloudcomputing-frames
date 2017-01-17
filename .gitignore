@@ -6,8 +6,8 @@ target/
 project/project/target/
 project/target/
 dependency-reduced-pom.xml
-
-
+metastore_db/
+derby.log
 
 
 

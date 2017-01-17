@@ -21,4 +21,17 @@ SparkSessionRddToDf
 
 
 
+---
+### Hive On Spark的使用
+
+HiveOnSparkDemo
+
+```
+/home/liguodong/install/spark/bin/spark-submit \
+--class com.lgd.spark.sql.HiveOnSparkDemo \
+--master spark://ubuntu:7077 \
+--executor-memory 1024m \
+--total-executor-cores 1 \
+/home/liguodong/code/original-spark-1.0.jar
+```
 
