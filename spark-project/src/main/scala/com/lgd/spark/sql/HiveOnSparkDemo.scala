@@ -15,8 +15,9 @@ object HiveOnSparkDemo {
 
     //远程调试
     val conf = new SparkConf().setAppName("HiveOnSparkDemo")
-      //.setMaster("spark://192.168.133.252:7077")
-      //.setJars(List("E:\\study\\sourcecode\\bigdata-cloudcomputing-frames\\spark-project\\target\\original-spark-1.0.jar"))
+     // .setMaster("spark://192.168.133.252:7077")
+      //.set("spark.sql.warehouse.dir","hdfs://ubuntu:8020/user/hive/warehouse")
+     // .setJars(List("E:\\study\\sourcecode\\bigdata-cloudcomputing-frames\\spark-project\\target\\original-spark-1.0.jar"))
 
     val sc = new SparkContext(conf)
     //val sqlContext = new SQLContext(sc)
