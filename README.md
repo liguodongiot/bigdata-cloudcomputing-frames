@@ -5,5 +5,8 @@
 
 redis
 
+spark
+
+kafka
 
 
