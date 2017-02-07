@@ -150,10 +150,13 @@ bin/kafka-topics.sh --list --zookeeper localhost:2181
 
 查看主题详情
 bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic test
-
-
 ```
 
+####基于Receivers的方法
+**KafkaWordCount**
 
-### 
+#### 直连方式
+**KafkaDirectWordCount**
 
+### 窗口函数
+**WindowOpts**

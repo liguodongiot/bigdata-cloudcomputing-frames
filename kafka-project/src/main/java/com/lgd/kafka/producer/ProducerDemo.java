@@ -10,6 +10,7 @@ import java.util.Properties;
 /**
  * Created by liguodong on 2017/2/5.
  */
+
 public class ProducerDemo {
 
     public static void main(String[] args) {
@@ -24,7 +25,7 @@ public class ProducerDemo {
                 new ProducerConfig(props));
 
         String topic = "test";
-        for (int i = 0; i < 100; i++) {
+        for (int i = 1; i < 42; i++) {
             producer.send(new KeyedMessage<Integer, String>(topic,"msg"+i));
         }
     }

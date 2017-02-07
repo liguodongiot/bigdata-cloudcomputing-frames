@@ -10,11 +10,12 @@ import org.apache.spark.streaming.{Seconds, StreamingContext}
 object FlumePushWordCount {
   def main(args: Array[String]): Unit = {
 
-    //System.setProperty("hadoop.home.dir", "E:\\install\\hadoop-2.6.0")
-    val host = args(0)
-    val port = args(1).toInt
+    System.setProperty("hadoop.home.dir", "E:\\install\\hadoop-2.6.0")
 
-    val conf = new SparkConf().setAppName("FlumePushWordCount")//.setMaster("local[2]")
+    val host = "192.168.133.238" //args(0)
+    val port = 8888 //args(1).toInt
+
+    val conf = new SparkConf().setAppName("FlumePushWordCount").setMaster("local[2]")
     val ssc = new StreamingContext(conf,Seconds(5))
 
 
