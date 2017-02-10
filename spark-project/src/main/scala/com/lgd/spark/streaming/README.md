@@ -160,3 +160,7 @@ bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic test
 
 ### 窗口函数
 **WindowOpts**
+```
+#模拟产生数据
+nc -lk 9999
+```
