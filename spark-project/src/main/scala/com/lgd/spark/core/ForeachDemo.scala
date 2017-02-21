@@ -8,7 +8,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 object ForeachDemo {
   def main(args: Array[String]): Unit = {
 
-    System.setProperty("hadoop.home.dir", "E:\\install\\hadoop-2.6.0")
+    //System.setProperty("hadoop.home.dir", "E:\\install\\hadoop-2.6.0")
 
     //本地方式
     //2表示启动两个线程
