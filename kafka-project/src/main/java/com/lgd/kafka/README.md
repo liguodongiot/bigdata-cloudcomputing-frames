@@ -25,10 +25,10 @@ bin/kafka-topics.sh --list --zookeeper localhost:2181
 bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic test
 
 创建生产者 producer
-bin/kafka-console-producer.sh --broker-list localhost:9092 --topic access_log
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic access
 
 创建消费者 consumer
-bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic access_log --from-beginning
+bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic access --from-beginning
 
 bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic jsontest --from-beginning
 

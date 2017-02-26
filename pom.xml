@@ -17,16 +17,19 @@
     </modules>
 
     <properties>
-        <junit.version>4.12</junit.version>
-        <scala.version>2.11.7</scala.version>
         <akka.version>2.4.14</akka.version>
-        <hadoop.version>2.6.2</hadoop.version>
-        <spark.version>2.1.0</spark.version>
-        <log4j.version>2.6.2</log4j.version>
-        <slf4j.version>1.7.21</slf4j.version>
         <commons.version>3.5</commons.version>
-        <kafka.version>0.8.2.2</kafka.version>
+        <elasticsearch.version>5.2.0</elasticsearch.version>
+        <elasticsearch-spark.version>2.4.3</elasticsearch-spark.version>
         <jedis.version>2.7.3</jedis.version>
+        <log4j.version>2.6.2</log4j.version>
+        <junit.version>4.12</junit.version>
+        <kafka.version>0.8.2.2</kafka.version>
+        <hadoop.version>2.6.2</hadoop.version>
+        <scala.version>2.11.7</scala.version>
+        <spark.version>2.1.0</spark.version>
+        <slf4j.version>1.7.21</slf4j.version>
+
     </properties>
 
     <dependencyManagement>
@@ -44,7 +47,16 @@
                 <artifactId>jedis</artifactId>
                 <version>${jedis.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.elasticsearch</groupId>
+                <artifactId>elasticsearch</artifactId>
+                <version>${elasticsearch.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.elasticsearch</groupId>
+                <artifactId>elasticsearch-spark_2.11</artifactId>
+                <version>${elasticsearch-spark.version}</version>
+            </dependency>
             <!--Scala lib-->
             <dependency>
                 <groupId>org.scala-lang</groupId>

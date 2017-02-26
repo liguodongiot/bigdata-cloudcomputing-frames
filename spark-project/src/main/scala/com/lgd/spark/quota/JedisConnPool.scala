@@ -22,8 +22,16 @@ object JedisConnPool {
 
   def main(args: Array[String]) {
     val conn = JedisConnPool.getConn()
+
     val r = conn.keys("*")
     println(r)
+//    val ty = conn.`type`("java framework")
+//    val value = conn.lpop("java framework")
+//    println(ty+":"+value)
+//    val list = conn.lrange("java framework", 0, conn.llen("java framework")-1)
+//    println(list)
+    val value = conn.get("无法无天_1488105281336")
+    println(value)
   }
-  
+
 }
