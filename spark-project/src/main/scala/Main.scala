@@ -16,8 +16,8 @@ object Main extends App{
   lines.flatMap(_.split(" ")).map((_,1)).groupBy(_._1).mapValues(_.foldLeft(0)(_+_._2))
 
   //时间处理
-  val datetime = new DateTime(2017,1,1,0,0,0)
-  println(datetime)
+  val datetime = new DateTime(2016,10,8,0,0,0)
+  println(datetime.plusDays(30))
   val dateFormat = FastDateFormat.getInstance("yyyy年MM月dd日,E,HH:mm:ss")
   val logTime = dateFormat.parse("2016年2月1日,星期一,10:01:37").getTime
   println(logTime)
