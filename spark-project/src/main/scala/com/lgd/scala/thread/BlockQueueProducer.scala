@@ -12,8 +12,8 @@ class BlockQueueProducer(latch: CountDownLatch, blockingQueue: ArrayBlockingQueu
   override def run(): Unit = {
     try {
       val random: Random = new Random()
-      val data = random.nextInt()
-      println(s"生产数据$data")
+      val data = random.nextInt(10)
+      println(s"生产数据：$data")
       blockingQueue.put(data)
     } finally {
       latch.countDown()
