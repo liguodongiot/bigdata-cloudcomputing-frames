@@ -21,7 +21,9 @@ object BlockQueueMain {
       fixedThreadPool.submit(new BlockQueueProducer(latch,blockingQueue))
     }
 
+    println("wait start...")
     latch.await()
+    println("wait finish...")
     fixedThreadPool.shutdown()
 
   }
