@@ -1,12 +1,12 @@
 package com.lgd.scala.thread
 
 import java.util.Random
-import java.util.concurrent.{ArrayBlockingQueue, CountDownLatch}
+import java.util.concurrent.{ArrayBlockingQueue, BlockingQueue, CountDownLatch}
 
 /**
   * Created by liguodong on 2017/3/5.
   */
-class BlockQueueConsumer(latch: CountDownLatch, blockingQueue: ArrayBlockingQueue[Integer])
+class BlockQueueConsumer(latch: CountDownLatch, blockingQueue: BlockingQueue[Integer])
   extends Runnable{
 
   override def run(): Unit = {

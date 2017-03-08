@@ -11,7 +11,7 @@ object BlockQueueMain {
 
     val fixedThreadPool: ExecutorService = Executors.newFixedThreadPool(3)
     val latch: CountDownLatch = new CountDownLatch(11)
-    val blockingQueue: ArrayBlockingQueue[Integer] = new ArrayBlockingQueue[Integer](5)
+    val blockingQueue: BlockingQueue[Integer] = new ArrayBlockingQueue[Integer](5)
 
     //生产者
     fixedThreadPool.submit(new BlockQueueConsumer(latch,blockingQueue))
