@@ -28,4 +28,9 @@ object Main extends App{
   val simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日,E,HH:mm:ss")
   val logTime2 = simpleDateFormat.parse("2016年2月1日,星期一,10:01:37").getTime
   println(new DateTime(logTime2).toString("yyyy年MM月dd日,E,HH:mm:ss"))
+
+  println(datetime.minusMonths(3).plusDays(1))
+  println(datetime.minusDays(90))
+  println(datetime.minusMonths(1))
+
 }
