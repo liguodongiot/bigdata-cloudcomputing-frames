@@ -50,7 +50,7 @@ PriorityBlockingQueue：　具有优先级的队列的有界队列，可以自�
 默认是按自然排序，可能很多场合并不合适。
 
 -handler：　拒绝策略，当线程池与workQueue队列都满了的情况下，对新加任务采取的策略。
-当提交任务数超过maxmumPoolSize + workQueue之和时，任务会交给RejectedExecutionHandler来处理
+当提交任务数超过maxmumPoolSize + workQueue 之和时，任务会交给RejectedExecutionHandler来处理
 
 AbortPolicy：　　  拒绝任务，抛出RejectedExecutionException异常。默认值。
 CallerRunsPolicy
@@ -66,7 +66,7 @@ corePoolSize，maximumPoolSize，workQueue之间关系。
 1.当线程池小于corePoolSize时，新提交任务将创建一个新线程执行任务，即使此时线程池中存在空闲线程。
 2.当线程池达到corePoolSize时，新提交任务将被放入workQueue中，等待线程池中任务调度执行
 3.当workQueue已满，且maximumPoolSize>corePoolSize时，新提交任务会创建新线程执行任务
-4.当提交任务数超过maximumPoolSize时，新提交任务由RejectedExecutionHandler处理
+4.当提交任务数超过maximumPoolSize+ workQueue 之和时，新提交任务由RejectedExecutionHandler处理
 5.当线程池中超过corePoolSize线程，空闲时间达到keepAliveTime时，关闭空闲线程
 6.当设置allowCoreThreadTimeOut(true)时，线程池中corePoolSize线程空闲时间达到keepAliveTime也将关闭
 
@@ -119,4 +119,67 @@ newCacheThreadPool默认使用的是SynchronousQueue.
 如果在主线程获取，就要等任务都提交后才获取，
 就会阻塞大量任务结果，队列过大OOM，所以最好异步开个线程获取结果。
 
+
+自定义线程池
+**Main**
+
+自定义非阻塞线程池
+**CustomThreadPoolExecutor**
+方法中建立一个核心线程数为30个，缓冲队列有10个的线程池。
+每个线程任务，执行时会先睡眠3秒，保证提交10任务时，核心线程数目被占用完，
+再提交20+20任务时，阻塞队列和最大线程数都被占用完，
+这样提交第51个任务是，会交给CustomRejectedExecutionHandler 异常处理类来处理。
+
+自定义阻塞线程池
+**BlockThreadPoolExecutor**
+当提交任务被拒绝时，进入拒绝机制，我们实现拒绝方法，
+把任务重新用阻塞提交方法put提交，
+实现阻塞提交任务功能，防止队列过大，OOM，提交被拒绝方法在下面
+
+
+ExecutorService中submit和execute的区别
+1.接收的参数不一样
+2.submit有返回值，而execute没有
+3.submit方便Exception处理
+
+-------------
+
+ThreadPoolExecutor
+execute()
+
+public void execute(Runnable command) {
+    if (command == null)
+        throw new NullPointerException();
+
+    int c = ctl.get();
+    if (workerCountOf(c) < corePoolSize) {
+        if (addWorker(command, true))
+            return;
+        c = ctl.get();
+    }
+    if (isRunning(c) && workQueue.offer(command)) {
+        int recheck = ctl.get();
+        if (! isRunning(recheck) && remove(command))
+            reject(command);
+        else if (workerCountOf(recheck) == 0)
+            addWorker(null, false);
+    }
+    else if (!addWorker(command, false))
+        // 进入拒绝机制， 我们把runnable任务拿出来，重新用阻塞操作put，来实现提交阻塞功能
+        reject(command);
+}
+-------------
+
+AbstractExecutorService
+submit()
+-------------
+
+继承关系
+public interface Executor
+public interface ExecutorService extends Executor
+public abstract class AbstractExecutorService implements ExecutorService
+public class ThreadPoolExecutor extends AbstractExecutorService
+
 ```
+
+
