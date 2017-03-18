@@ -14,16 +14,19 @@ import java.util.concurrent.LinkedBlockingQueue;
 /**
  * Created by liguodong on 2017/3/17.
  */
+
 public class CompletionServiceMain {
 
     public static void main(String[] args) throws Exception {
         CompletionServiceMain completionServiceMain = new CompletionServiceMain();
-        completionServiceMain.count1();
-        completionServiceMain.count2();
+        //阻塞队列
+        completionServiceMain.sumBlockingQueue();
+        //CompletionService
+        completionServiceMain.sumCompletionService();
     }
 
     //使用阻塞容器保存每次Executor处理的结果，在后面进行统一处理
-    public void count1() throws Exception{
+    public void sumBlockingQueue() throws Exception{
 
         ExecutorService exec = Executors.newCachedThreadPool();
 
@@ -42,7 +45,7 @@ public class CompletionServiceMain {
     }
 
     //使用CompletionService(完成服务)保持Executor处理的结果
-    public void count2() throws InterruptedException, ExecutionException{
+    public void sumCompletionService() throws InterruptedException, ExecutionException{
         ExecutorService exec = Executors.newCachedThreadPool();
         CompletionService<Integer> execcomp = new ExecutorCompletionService<Integer>(exec);
         for(int i=0; i<10; i++){
