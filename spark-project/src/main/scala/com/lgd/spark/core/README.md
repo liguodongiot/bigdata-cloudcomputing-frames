@@ -63,3 +63,17 @@ IpLocation
 
 JdbcRddDemo
 
+
+### Datesets
+```
+Spark引入DataFrame，它可以提供high-level functions让Spark更好的处理结构数据的计算。
+这让Catalyst optimizer 和Tungsten（钨丝） execution engine自动加速大数据分析。
+发布DataFrame之后开发者收到了很多反馈，其中一个主要的是大家反映缺乏编译时类型安全。
+为了解决这个问题，Spark采用新的Dataset API (DataFrame API的类型扩展)。
+Dataset API扩展DataFrame API支持静态类型和运行已经存在的Scala或Java语言的用户自定义函数。
+对比传统的RDD API，Dataset API提供更好的内存管理，特别是在长任务中有更好的性能提升。
+```
+
+**DatasetsMain**
+
+**DatasetsSpark2Main**
