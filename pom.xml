@@ -14,9 +14,11 @@
         <module>spark-project</module>
         <module>redis-project</module>
         <module>kafka-project</module>
+        <module>hadoop-project</module>
     </modules>
 
     <properties>
+        <alchim31.version>3.2.2</alchim31.version>
         <akka.version>2.4.14</akka.version>
         <commons.version>3.5</commons.version>
         <elasticsearch.version>5.2.0</elasticsearch.version>
@@ -27,9 +29,9 @@
         <kafka.version>0.8.2.2</kafka.version>
         <hadoop.version>2.6.2</hadoop.version>
         <scala.version>2.11.7</scala.version>
+        <scalatest.version>3.0.1</scalatest.version>
         <spark.version>2.1.0</spark.version>
         <slf4j.version>1.7.21</slf4j.version>
-
     </properties>
 
     <dependencyManagement>
@@ -77,6 +79,16 @@
                 <groupId>org.scala-lang</groupId>
                 <artifactId>scala-reflect</artifactId>
                 <version>${scala.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.scalatest</groupId>
+                <artifactId>scalatest_2.11</artifactId>
+                <version>${scalatest.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>${alchim31.version}</version>
             </dependency>
 
             <!--Akka lib-->
@@ -195,6 +207,7 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
+
     </dependencies>
 
 </project>
