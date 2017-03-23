@@ -83,7 +83,7 @@ public class WordCountApp {
 
 
 
-    private static void deleteDir(Configuration conf, String dirPath) throws IOException {
+    public static void deleteDir(Configuration conf, String dirPath) throws IOException {
         FileSystem fs = FileSystem.get(conf);
 
         Path targetPath = new Path(dirPath);
