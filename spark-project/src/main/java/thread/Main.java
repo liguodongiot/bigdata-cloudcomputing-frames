@@ -19,17 +19,25 @@ public class Main {
         }
     };
 
-
-
     private static int produceTaskSleepTime = 2;
     private static int produceTaskMaxNumber = 10;
 
     public static void main(String[] args) {
 
-        threadPool();
+        //threadPool();
+
+        coreNum();
+
 
     }
 
+    //查看计算机可用核数
+    public static void coreNum(){
+        int num = Runtime.getRuntime().availableProcessors();
+        System.out.println(num);
+    }
+
+    //线程池ThreadPoolExecutor
     public static void threadPool(){
         //线程安全
         ThreadLocalRandom threadLocalRandom = ThreadLocalRandom.current();
@@ -49,8 +57,6 @@ public class Main {
                 e.printStackTrace();
             }
         }
-
-
         threadPool.shutdown();
     }
 

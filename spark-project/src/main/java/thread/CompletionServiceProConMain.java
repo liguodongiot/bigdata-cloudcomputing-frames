@@ -6,7 +6,6 @@ import java.util.concurrent.*;
 /**
  * 单独启动一个线程获取结果
  *
- *
  * 获取任务的结果的要重新开一个线程获取，
  * 如果在主线程获取，就要等任务都提交后才获取，
  * 就会阻塞大量任务结果，队列过大OOM，所以最好异步开个线程获取结果。
@@ -18,7 +17,7 @@ public class CompletionServiceProConMain {
         ExecutorService executor = Executors.newCachedThreadPool();
         CompletionService<Integer> comp = new ExecutorCompletionService<>(executor);
 
-        comp.submit(new ConsumerTask(comp));
+        executor.submit(new ConsumerTask(comp));
 
         for(int i = 0; i<5; i++) {
             comp.submit(new ProducerTask());
@@ -39,7 +38,7 @@ class ProducerTask implements Callable<Integer> {
 
 }
 
-class ConsumerTask implements Callable<Integer> {
+class ConsumerTask implements Runnable {
 
     private CompletionService<Integer> completionService;
 
@@ -48,23 +47,30 @@ class ConsumerTask implements Callable<Integer> {
     }
 
     @Override
-    public Integer call() throws Exception {
+    public void run() {
         int count = 0, index = 1;
+
         while(count<5) {
-            //观察两者产生的不同。
-            Future<Integer> f = completionService.poll();
-            //Future<Integer> f = completionService.take();
-            if(f == null) {
-                System.out.println(index + " 没发现有完成的任务");
-            }else {
-                System.out.println(index + "产生了一个随机数: " + f.get());
-                count++;
+
+            Future<Integer> f = null;
+
+            try {
+                //观察两者产生的不同。
+                f =completionService.poll();
+                //f = completionService.take();
+                if(f == null) {
+                    System.out.println(index + " 没发现有完成的任务");
+                }else {
+                    System.out.println(index + "产生了一个随机数: " + f.get());
+                    count++;
+                }
+                index++;
+                TimeUnit.MILLISECONDS.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
             }
-            index++;
-            TimeUnit.MILLISECONDS.sleep(500);
-
         }
-        return index;
     }
-
 }
