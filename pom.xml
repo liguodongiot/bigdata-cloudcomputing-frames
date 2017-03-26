@@ -15,6 +15,7 @@
         <module>redis-project</module>
         <module>kafka-project</module>
         <module>hadoop-project</module>
+        <module>base-project</module>
     </modules>
 
     <properties>
