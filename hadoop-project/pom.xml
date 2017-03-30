@@ -127,6 +127,10 @@
         <!--<sourceDirectory>src/main/java</sourceDirectory>-->
         <testSourceDirectory>src/test/scala</testSourceDirectory>
         <!--<testSourceDirectory>src/test/java</testSourceDirectory>-->
+        <!-- 源码编译后的 class 文件的路径配置 -->
+        <outputDirectory>target/classes</outputDirectory>
+        <!-- 测试源码编译后的 class 文件的路径配置 -->
+        <testOutputDirectory>target/test-classes</testOutputDirectory>
         <plugins>
             <!--Scala编译插件-->
             <plugin>

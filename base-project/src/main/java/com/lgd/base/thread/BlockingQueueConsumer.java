@@ -1,6 +1,5 @@
 package com.lgd.base.thread;
 
-import java.util.Random;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -23,6 +22,10 @@ public class BlockingQueueConsumer implements Runnable {
             Thread.sleep(random.nextInt(10));
 
             System.out.println(Thread.currentThread().getName()+ " trying...");
+
+            //poll(time):取走BlockingQueue里排在首位的对象,若不能立即取出,
+            // 则可以等time参数规定的时间,取不到时返回null;
+            //String temp = queue.poll();
             String temp = queue.take();//如果队列为空，会阻塞当前线程
             System.out.println(Thread.currentThread().getName() + " get a job " +temp);
         } catch (InterruptedException e) {

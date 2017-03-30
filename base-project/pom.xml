@@ -13,9 +13,21 @@
     <artifactId>base</artifactId>
     <version>1.0.0</version>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-core</artifactId>
+        </dependency>
+    </dependencies>
+
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
         <testSourceDirectory>src/test/java</testSourceDirectory>
+        <!-- 源码编译后的 class 文件的路径配置 -->
+        <outputDirectory>target/classes</outputDirectory>
+        <!-- 测试源码编译后的 class 文件的路径配置 -->
+        <testOutputDirectory>target/test-classes</testOutputDirectory>
+
         <plugins>
             <!--java编译插件-->
             <plugin>

@@ -19,6 +19,7 @@
     </modules>
 
     <properties>
+        <activemq.version>5.7.0</activemq.version>
         <alchim31.version>3.2.2</alchim31.version>
         <akka.version>2.4.14</akka.version>
         <commons.version>3.5</commons.version>
@@ -44,6 +45,11 @@
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-core</artifactId>
+                <version>${activemq.version}</version>
             </dependency>
 
             <dependency>
