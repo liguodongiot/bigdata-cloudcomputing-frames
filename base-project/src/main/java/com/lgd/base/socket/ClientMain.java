@@ -19,10 +19,12 @@ public class ClientMain {
         OutputStream out = socket.getOutputStream();
         InputStream in = socket.getInputStream();
 
+        //发送
         PrintWriter pw = new PrintWriter(new BufferedOutputStream(out));
         pw.println("com.lgd.base.socket.BusinessImpl:getPrice:yifu");
         pw.flush();
 
+        //接收
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         String readLine = br.readLine();
 
