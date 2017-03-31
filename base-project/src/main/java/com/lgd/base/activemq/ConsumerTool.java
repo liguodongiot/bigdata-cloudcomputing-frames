@@ -35,7 +35,7 @@ public class ConsumerTool implements MessageListener,ExceptionListener {
      * @Return: 
      * @Date: 2017/3/31 17:55
      */
-    private void initialize() throws JMSException{
+    private void initialize() throws JMSException {
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(
                 user, password, url);
         connection = connectionFactory.createConnection();
@@ -45,7 +45,7 @@ public class ConsumerTool implements MessageListener,ExceptionListener {
     }
 
     // 消费消息
-    public void consumeMessage() throws JMSException, Exception {
+    public void consumeMessage() throws JMSException {
         initialize();
         connection.start();
         consumer.setMessageListener(this);
