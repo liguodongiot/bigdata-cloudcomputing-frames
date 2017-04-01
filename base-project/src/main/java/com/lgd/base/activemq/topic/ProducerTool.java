@@ -1,4 +1,4 @@
-package com.lgd.base.activemq;
+package com.lgd.base.activemq.topic;
 
 import javax.jms.Connection;
 import javax.jms.DeliveryMode;

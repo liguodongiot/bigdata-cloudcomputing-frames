@@ -1,6 +1,4 @@
-package com.lgd.base.activemq;
-
-import javax.jms.JMSException;
+package com.lgd.base.activemq.topic;
 
 /**
  * <p>Title: ConsumerMain</p>
