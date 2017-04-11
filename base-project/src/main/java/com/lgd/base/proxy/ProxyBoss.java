@@ -19,8 +19,7 @@ public class ProxyBoss {
 
         return (T) Proxy.newProxyInstance(interfaceClass.getClassLoader(),
             new Class[] { interfaceClass }, new InvocationHandler() {
-                public Object invoke(Object proxy, Method method,
-                                     Object[] args) throws Throwable {
+                public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                     Integer returnValue = (Integer) method.invoke(
                             implementsClass.newInstance(), args);// 调用原始对象以后返回的值
                     return returnValue - discountCoupon;

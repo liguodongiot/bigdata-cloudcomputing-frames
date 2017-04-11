@@ -8,6 +8,7 @@ public class SaleActionMain {
     public static void main(String[] args) throws Exception {
 
         saleByBossSelf();
+        System.out.println("-----------------");
         saleByProxy();
 
     }
