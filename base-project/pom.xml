@@ -12,6 +12,8 @@
     </parent>
 
     <artifactId>base-project</artifactId>
+    <packaging>jar</packaging>
+    <name>Base Project</name>
 
     <dependencies>
         <dependency>

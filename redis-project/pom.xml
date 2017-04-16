@@ -13,7 +13,9 @@
     </parent>
 
     <artifactId>redis-project</artifactId>
-    
+    <packaging>jar</packaging>
+    <name>Redis Project</name>
+
     <dependencies>
         <dependency>
             <groupId>redis.clients</groupId>

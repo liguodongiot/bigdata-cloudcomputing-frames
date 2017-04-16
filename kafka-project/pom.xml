@@ -12,7 +12,8 @@
     </parent>
 
     <artifactId>kafka-project</artifactId>
-
+    <packaging>jar</packaging>
+    <name>Kafka Project</name>
 
     <dependencies>
 
