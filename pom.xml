@@ -8,14 +8,14 @@
     <groupId>com.lgd.bigdata.frame</groupId>
     <artifactId>bigdata-frames</artifactId>
     <packaging>pom</packaging>
-    <version>1.0</version>
+    <version>1.0.0</version>
 
     <modules>
+        <module>base-project</module>
+        <module>hadoop-project</module>
         <module>spark-project</module>
         <module>redis-project</module>
         <module>kafka-project</module>
-        <module>hadoop-project</module>
-        <module>base-project</module>
     </modules>
 
     <properties>
