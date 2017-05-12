@@ -14,7 +14,7 @@
 
     <artifactId>spark-project</artifactId>
     <packaging>jar</packaging>
-    <name>Spark Project</name>
+    <name>spark-project</name>
 
     <dependencies>
 

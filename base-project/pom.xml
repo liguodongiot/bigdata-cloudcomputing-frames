@@ -13,7 +13,7 @@
 
     <artifactId>base-project</artifactId>
     <packaging>jar</packaging>
-    <name>Base Project</name>
+    <name>base-project</name>
 
     <dependencies>
         <dependency>

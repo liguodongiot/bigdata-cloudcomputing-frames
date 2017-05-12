@@ -13,7 +13,7 @@
 
     <artifactId>hadoop-project</artifactId>
     <packaging>jar</packaging>
-    <name>Hadoop Project</name>
+    <name>hadoop-project</name>
 
     <dependencies>
         <dependency>

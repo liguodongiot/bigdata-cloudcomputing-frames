@@ -13,7 +13,7 @@
 
     <artifactId>kafka-project</artifactId>
     <packaging>jar</packaging>
-    <name>Kafka Project</name>
+    <name>kafka-project</name>
 
     <dependencies>
 
