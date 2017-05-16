@@ -23,6 +23,7 @@
         <alchim31.version>3.2.2</alchim31.version>
         <akka.version>2.4.14</akka.version>
         <commons.version>3.5</commons.version>
+        <cglib.version>3.2.5</cglib.version>
         <elasticsearch.version>5.2.0</elasticsearch.version>
         <elasticsearch-spark.version>2.4.3</elasticsearch-spark.version>
         <jedis.version>2.7.3</jedis.version>
@@ -39,7 +40,11 @@
 
     <dependencyManagement>
         <dependencies>
-
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>${cglib.version}</version>
+            </dependency>
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
