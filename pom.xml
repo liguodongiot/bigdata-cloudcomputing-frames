@@ -23,6 +23,9 @@
         <alchim31.version>3.2.2</alchim31.version>
         <akka.version>2.4.14</akka.version>
         <commons.version>3.5</commons.version>
+        <commons-collections.version>3.2.2</commons-collections.version>
+        <commons-collections4.version>4.1</commons-collections4.version>
+        <commons-lang.version>2.6.0.redhat-6</commons-lang.version>
         <cglib.version>3.2.5</cglib.version>
         <elasticsearch.version>5.2.0</elasticsearch.version>
         <elasticsearch-spark.version>2.4.3</elasticsearch-spark.version>
@@ -270,7 +273,22 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>${commons-collections.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${commons-collections4.version}</version>
+            </dependency>
 
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${commons-lang.version}</version>
+            </dependency>
             <!--kafka-->
             <dependency>
                 <groupId>org.apache.kafka</groupId>
@@ -299,6 +317,18 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
         </dependency>
     </dependencies>
 
