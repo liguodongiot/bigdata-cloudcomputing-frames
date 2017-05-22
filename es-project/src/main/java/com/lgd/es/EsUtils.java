@@ -4,6 +4,7 @@ import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.cluster.node.DiscoveryNode;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.transport.client.PreBuiltTransportClient;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -18,6 +19,9 @@ import java.util.List;
 public class EsUtils {
 
     TransportClient transportClient;
+
+    private EsUtils() {
+    }
 
 //    public TransportClient init() throws UnknownHostException {
 //        /**
@@ -48,6 +52,29 @@ public class EsUtils {
 //
 //        return transportClient;
 //    }
+
+
+    public static TransportClient init() throws UnknownHostException {
+        //设置集群名称
+        Settings settings = Settings.builder()
+                .put("cluster.name", "elasticsearch")
+                .put("client.transport.sniff", true)//启动嗅探功能
+                .build();
+        //创建client
+        TransportClient transportClient = new PreBuiltTransportClient(settings)
+                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("127.0.0.1"), 9300));
+
+        /**
+          * 3：查看集群信息
+          */
+        List<DiscoveryNode> connectedNodes = transportClient.connectedNodes();
+        for(DiscoveryNode node : connectedNodes)
+        {
+            System.out.println("节点主机："+node.getHostAddress());
+        }
+        return transportClient;
+    }
+
 
 
 
