@@ -399,12 +399,12 @@ public class Es5Test {
 
         SearchRequest searchRequest = new SearchRequest(index).types(type);
         SearchResponse sr = new SearchTemplateRequestBuilder(client)
-            .setScript(script)
-            .setScriptType(ScriptType.INLINE)
-            .setScriptParams(params)
-            .setRequest(searchRequest)
-            .get()
-            .getResponse();
+                .setScript(script)
+                .setScriptType(ScriptType.INLINE)
+                .setScriptParams(params)
+                .setRequest(searchRequest)
+                .get()
+                .getResponse();
 
         //List<Person> rets = new ArrayList<Person>((int)sr.getHits().getTotalHits());
 
@@ -415,6 +415,76 @@ public class Es5Test {
         }
 
     }
+
+    String indexAnswer = "xma_faq_dev";
+    String typeAnswer = "correct_answer_info";
+    @Test
+    public void testAnswerDsl() {
+
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("ask","绑定");
+
+        String script = "{\n" +
+                "    \"query\" : {\n" +
+                "        \"match\" : {\n" +
+                "            \"ask\" : \"{{ask}}\"\n" +
+                "        }\n" +
+                "    }\n" +
+                "}";
+
+        SearchRequest searchRequest = new SearchRequest(indexAnswer).types(typeAnswer);
+        SearchResponse sr = new SearchTemplateRequestBuilder(client)
+            .setScript(script)
+            .setScriptType(ScriptType.INLINE)
+            .setScriptParams(params)
+            .setRequest(searchRequest)
+            .get()
+            .getResponse();
+
+        for (SearchHit hit : sr.getHits()) {
+            Map<String, Object> source = hit.getSource();
+            System.out.println(source.get("ask").toString());
+            System.out.println(source.get("answer").toString());
+        }
+
+    }
+
+
+    @Test
+    public void testAskAnswerDsl() {
+
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("key_word","绑定");
+
+        String script = "{\n" +
+                "\t\"query\" : {\n" +
+                "\t\t\"bool\": {\n" +
+                "\t\t\t\"should\": [\n" +
+                "\t\t\t\t{ \"match\": { \"ask\": \"{{key_word}}\" }},\n" +
+                "\t\t\t\t{ \"match\": { \"answer\": \"{{key_word}}\"}}\n" +
+                "\t\t\t]\n" +
+                "\t\t}\n" +
+                "\t}\n" +
+                "}";
+
+        SearchRequest searchRequest = new SearchRequest(indexAnswer).types(typeAnswer);
+        SearchResponse sr = new SearchTemplateRequestBuilder(client)
+                .setScript(script)
+                .setScriptType(ScriptType.INLINE)
+                .setScriptParams(params)
+                .setRequest(searchRequest)
+                .get()
+                .getResponse();
+
+        for (SearchHit hit : sr.getHits()) {
+            Map<String, Object> source = hit.getSource();
+            System.out.println(source.get("ask").toString());
+            System.out.println(source.get("answer").toString());
+        }
+
+    }
+
+
 
 
 }

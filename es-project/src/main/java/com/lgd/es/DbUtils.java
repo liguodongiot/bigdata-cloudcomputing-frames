@@ -5,7 +5,7 @@ import java.sql.*;
 import java.util.Properties;
 
 /**
- * Describe:
+ * Describe: 数据工具类
  *
  * @author: guodong.li
  * @datetime: 2017/5/22 17:12

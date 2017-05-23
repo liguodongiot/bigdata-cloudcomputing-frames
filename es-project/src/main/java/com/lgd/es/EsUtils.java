@@ -11,7 +11,7 @@ import java.net.UnknownHostException;
 import java.util.List;
 
 /**
- * Describe:
+ * Describe: ES工具类
  *
  * @author: guodong.li
  * @datetime: 2017/5/22 7:51

@@ -1,5 +1,7 @@
 package com.lgd.es;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.junit.After;
 import org.junit.Before;
@@ -8,6 +10,8 @@ import org.junit.Test;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Describe:
@@ -47,6 +51,7 @@ public class MysqlToEsTest {
 
     }
 
+    @Test
     public void testSelectMysql() {
         try {
 
@@ -61,8 +66,64 @@ public class MysqlToEsTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
+
+    @Test
+    public void testFormMysqlToEs() {
+        String index = "xma_faq_dev";
+        String type = "correct_answer_info";
+        List<CorrentAnswerInfo> list = new ArrayList<>(10);
+
+        try {
+
+            String sql = "select \n" +
+                    "id,\n" +
+                    "ask,\n" +
+                    "answer,\n" +
+                    "pure_text_answer,\n" +
+                    "classify_name,\n" +
+                    "state,\n" +
+                    "ask_type,\n" +
+                    "match_mode,\n" +
+                    "valid_term,\n" +
+                    "update_time\n" +
+                    "from \n" +
+                    "correct_answer_info \n" +
+                    "where id>=? \n" +
+                    "limit 10";
+            ps = conn.prepareStatement(sql);
+            ps.setObject(1, 1);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                CorrentAnswerInfo correntAnswerInfo = new CorrentAnswerInfo();
+                correntAnswerInfo.setId(rs.getInt(1));
+                correntAnswerInfo.setAsk(rs.getString(2));
+                correntAnswerInfo.setAnswer(rs.getString(3));
+                correntAnswerInfo.setPureTextAnswer(rs.getString(4));
+                correntAnswerInfo.setClassifyName(rs.getString(5));
+                correntAnswerInfo.setState(rs.getString(6));
+                correntAnswerInfo.setAskType(rs.getString("ask_type"));
+                correntAnswerInfo.setMatchMode(rs.getString("match_mode"));
+                correntAnswerInfo.setValidTerm(rs.getString("valid_term"));
+                correntAnswerInfo.setUpdateTime(DateUtils.timestamp2Str(rs.getTimestamp("update_time")));
+                System.out.println(correntAnswerInfo.toString());
+                list.add(correntAnswerInfo);
+            }
+
+            for (CorrentAnswerInfo correntAnswer : list) {
+                ObjectMapper objectMapper = new ObjectMapper();
+                IndexResponse response = client.prepareIndex(index, type, String.valueOf(correntAnswer.getId()))
+                        .setSource(objectMapper.writeValueAsString(correntAnswer))
+                        .execute().actionGet();
+                System.out.println(response.getId());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 
 
