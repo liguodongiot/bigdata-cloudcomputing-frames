@@ -1,6 +1,7 @@
 package com.lgd.es;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.junit.After;
@@ -72,7 +73,7 @@ public class MysqlToEsTest {
     public void testFormMysqlToEs() {
         String index = "xma_faq_dev";
         String type = "correct_answer_info";
-        List<CorrentAnswerInfo> list = new ArrayList<>(10);
+        List<CorrentAnswerInfo> list = new ArrayList<CorrentAnswerInfo>(10);
 
         try {
 
@@ -122,9 +123,6 @@ public class MysqlToEsTest {
             e.printStackTrace();
         }
     }
-
-
-
 
 
 }
