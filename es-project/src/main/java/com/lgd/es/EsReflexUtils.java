@@ -44,6 +44,7 @@ public class EsReflexUtils {
             client = (TransportClient) constructor.newInstance(settings,new Class[]{EmptyPlugin.class});
             client.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("10.250.140.215"), 9300));
         } catch (Exception e) {
+            e.printStackTrace();
             LOGGER.error("初始化异常。。。"+e);
         }
 
@@ -65,7 +66,10 @@ public class EsReflexUtils {
     }
 
     public static void close(){
-        client.close();
+        if (client != null) {
+            client.close();
+        }
+
     }
 
 }

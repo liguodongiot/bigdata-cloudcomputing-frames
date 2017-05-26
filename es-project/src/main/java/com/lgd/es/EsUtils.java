@@ -18,7 +18,10 @@ import java.util.List;
  */
 public class EsUtils {
 
-    TransportClient transportClient;
+    private static TransportClient client;
+
+    private final static String HOSTNAME = "172.22.1.133";
+    private final static Integer PORT = 9300;
 
     private EsUtils() {
     }
@@ -61,21 +64,25 @@ public class EsUtils {
                 .put("client.transport.sniff", true)//启动嗅探功能
                 .build();
         //创建client
-        TransportClient transportClient = new PreBuiltTransportClient(settings)
-                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("127.0.0.1"), 9300));
+        client = new PreBuiltTransportClient(settings)
+                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(HOSTNAME), PORT));
 
         /**
           * 3：查看集群信息
           */
-        List<DiscoveryNode> connectedNodes = transportClient.connectedNodes();
+        List<DiscoveryNode> connectedNodes = client.connectedNodes();
         for(DiscoveryNode node : connectedNodes)
         {
             System.out.println("节点主机："+node.getHostAddress());
         }
-        return transportClient;
+        return client;
     }
 
 
-
+    public static void close(){
+        if (client != null) {
+            client.close();
+        }
+    }
 
 }

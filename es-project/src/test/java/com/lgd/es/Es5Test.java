@@ -456,6 +456,18 @@ public class Es5Test {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("key_word","绑定");
 
+        /**
+         {
+             "query" : {
+                 "bool": {
+                     "should": [
+                        { "match": { "ask": "Smith" }},
+                        { "match": { "answer": "Smith"}}
+                     ]
+                 }
+             }
+         }
+         */
         String script = "{\n" +
                 "\t\"query\" : {\n" +
                 "\t\t\"bool\": {\n" +
