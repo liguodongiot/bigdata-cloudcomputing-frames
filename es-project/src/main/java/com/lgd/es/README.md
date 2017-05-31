@@ -365,3 +365,115 @@ NodeClient顾名思义，是作为ES集群的一个节点，它是ES中的一环
 也是通过这个来确认结果分布的，所以不能改。从分片的数量可以随便改，因为塔是跟主分片关联的。
 另外，Node节点也可以随时加，而且ES还会在新节点加入之后，重新调整数据分片的分布。
 ```
+
+
+### 同义词插件elasticsearch-analysis-dynamic-synonym 
+```
+# 下载及安装地址
+https://github.com/bells/elasticsearch-analysis-dynamic-synonym
+http://blog.csdn.net/fenglailea/article/details/56845892
+http://ginobefunny.com/post/elasticsearch_dynamic_synonym_plugin/?utm_source=tuicool&utm_medium=referral
+
+https://www.elastic.co/guide/en/elasticsearch/reference/5.2/analysis-synonym-tokenfilter.html
+
+cd elasticsearch-analysis-dynamic-synonym/target/releases
+# 解压缩
+unzip elasticsearch-analysis-dynamic-synonym-5.2.1.zip -d dynamic-synonym
+
+# 如果已存在索引则删除，没有则不执行
+curl -XDELETE 'http://172.22.1.133:9200/testsynonyms'
+
+
+# 创建索引和映射
+curl -XPUT "http://172.22.1.133:9200/testsynonyms" -d '{
+    "settings" : {
+        "index": {
+          "analysis": {
+            "analyzer": {
+              "synonym": {
+                "tokenizer": "ik_max_word",
+                "filter": ["synonym"]
+              }
+            },
+            "filter": {
+              "synonym": {
+                "type": "synonym",
+                "synonyms_path": "synonyms.txt",
+                "ignore_case": true
+              }
+            }
+          }
+        }
+    },
+    "mappings" : {
+        "_default_":{
+          "_all": { "enabled":  false } // 关闭_all字段，因为我们只搜索title字段
+        },
+        "jdbc" : {
+            "dynamic" : true,// 是否启用“动态修改索引”
+            "properties" : {
+                "title" : {
+                    "type" : "text",
+                    "analyzer" : "synonym"
+                }
+            }
+        }
+    }
+}'
+
+# 测试同义词
+http://172.22.1.133:9200/testsynonyms/_analyze?pretty&analyzer=synonym&text=中美
+
+curl 'http://172.22.1.133:9200/testsynonyms/_analyze?pretty&analyzer=synonym' -d '{"text":"中美"}'
+
+
+
+# 插入测试数据
+curl -XPOST http://172.22.1.133:9200/testsynonyms/jdbc/1 -d '{"title":"美伊的是个烂摊子吗"}'
+
+curl -XPOST http://172.22.1.133:9200/testsynonyms/jdbc/2 -d '
+{"title":"中韩渔警冲突调查：韩警平均每天扣1艘中国渔船"}
+'
+curl -XPOST http://172.22.1.133:9200/testsynonyms/jdbc/3 -d '
+{"title":"中美领事馆"}
+'
+curl -XPOST http://172.22.1.133:9200/testsynonyms/jdbc/4 -d '
+{"title":"美国和伊拉克就是个烂摊子"}
+'
+curl -XPOST http://172.22.1.133:9200/testsynonyms/jdbc/5 -d '
+{"title":"中国和美国美领事馆"}
+'
+
+curl -XPOST http://172.22.1.133:9200/testsynonyms/jdbc/6 -d '
+{"title":"西红柿有点酸"}
+'
+
+curl -XPOST http://172.22.1.133:9200/testsynonyms/jdbc/7 -d '
+{"title":"番茄来了"}
+'
+
+# 查看数据
+curl -XGET http://172.22.1.133:9200/testsynonyms/jdbc/1?pretty
+
+# 查询
+curl -XGET 'http://172.22.1.133:9200/testsynonyms/jdbc/_search?pretty' -d '
+{
+    "query" : {
+        "match" : {
+            "title" : "番茄"
+        }
+    }
+}'
+
+curl -XGET 'http://172.22.1.133:9200/testsynonyms/jdbc/_search?pretty' -d '
+{
+  "query": { 
+    "bool": { 
+      "filter": [ 
+        { "term":  { "title": "中国" }},
+        { "term":  { "title": "美国" }}
+      ]
+    }
+  }
+}'
+```
