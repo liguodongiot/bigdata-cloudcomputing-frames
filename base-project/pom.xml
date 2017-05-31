@@ -13,9 +13,13 @@
 
     <artifactId>base-project</artifactId>
     <packaging>jar</packaging>
-    <name>Base Project</name>
+    <name>base-project</name>
 
     <dependencies>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-core</artifactId>

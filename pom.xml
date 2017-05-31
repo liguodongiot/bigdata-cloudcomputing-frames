@@ -16,6 +16,7 @@
         <module>spark-project</module>
         <module>redis-project</module>
         <module>kafka-project</module>
+        <module>es-project</module>
     </modules>
 
     <properties>
@@ -23,13 +24,19 @@
         <alchim31.version>3.2.2</alchim31.version>
         <akka.version>2.4.14</akka.version>
         <commons.version>3.5</commons.version>
+        <commons-collections.version>3.2.2</commons-collections.version>
+        <commons-collections4.version>4.1</commons-collections4.version>
+        <commons-lang.version>2.6.0.redhat-6</commons-lang.version>
+        <cglib.version>3.2.5</cglib.version>
         <elasticsearch.version>5.2.0</elasticsearch.version>
         <elasticsearch-spark.version>2.4.3</elasticsearch-spark.version>
         <jedis.version>2.7.3</jedis.version>
-        <log4j.version>2.6.2</log4j.version>
+        <log4j.version>2.7</log4j.version>
+        <jackson.version>2.1.3</jackson.version>
         <junit.version>4.12</junit.version>
         <kafka.version>0.8.2.2</kafka.version>
         <hadoop.version>2.6.2</hadoop.version>
+        <mysql.version>5.1.41</mysql.version>
         <scala.version>2.11.7</scala.version>
         <scalatest.version>3.0.1</scalatest.version>
         <spark.version>2.1.0</spark.version>
@@ -39,7 +46,11 @@
 
     <dependencyManagement>
         <dependencies>
-
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>${cglib.version}</version>
+            </dependency>
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
@@ -51,7 +62,11 @@
                 <artifactId>activemq-core</artifactId>
                 <version>${activemq.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
             <dependency>
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
@@ -123,6 +138,16 @@
                 <groupId>org.apache.spark</groupId>
                 <artifactId>spark-core_2.11</artifactId>
                 <version>${spark.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>transport</artifactId>
+                <version>${elasticsearch.version}</version>
             </dependency>
 
             <dependency>
@@ -241,6 +266,11 @@
                 <artifactId>log4j-core</artifactId>
                 <version>${log4j.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
             <!--
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
@@ -265,7 +295,22 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons.version}</version>
             </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.apache.commons</groupId>-->
+                <!--<artifactId>commons-collections</artifactId>-->
+                <!--<version>${commons-collections.version}</version>-->
+            <!--</dependency>-->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${commons-collections4.version}</version>
+            </dependency>
 
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${commons-lang.version}</version>
+            </dependency>
             <!--kafka-->
             <dependency>
                 <groupId>org.apache.kafka</groupId>
@@ -294,6 +339,18 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.commons</groupId>-->
+            <!--<artifactId>commons-collections</artifactId>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
         </dependency>
     </dependencies>
 

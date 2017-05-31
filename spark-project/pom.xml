@@ -14,7 +14,7 @@
 
     <artifactId>spark-project</artifactId>
     <packaging>jar</packaging>
-    <name>Spark Project</name>
+    <name>spark-project</name>
 
     <dependencies>
 
@@ -80,15 +80,11 @@
             <artifactId>hadoop-client</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
+
 
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.34</version>
         </dependency>
 
         <dependency>
