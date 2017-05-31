@@ -1,8 +1,6 @@
 
-
+#### Elasticsearch 支持的核心类型
 ```
-Elasticsearch 支持的核心类型：
-
 JSON 基础类型
 字符串: text, keyword
 数字: byte, short, integer, long, float, double，half_float
@@ -12,14 +10,112 @@ JSON 基础类型
 对象: object
 
 ES 独有类型
-
 多重: multi
 经纬度: geo_point
 网络地址: ip
 堆叠对象: nested object
 二进制: binary
 附件: attachment
+
+引入新的字段类型Text/Keyword 来替换 String
+keyword类型的数据只能完全匹配，适合那些不需要分词的数据，对过滤、聚合非常友好，
+text当然就是全文检索需要分词的字段类型了。
+另外string类型暂时还在的，6.0会移除。
+
 ```
+
+
+#### setting与mapping
+```
+setting：通过setting可以更改es配置可以用来修改副本数和分片数。
+
+# 1、查看
+# 通过curl或浏览器查看副本分片信息
+curl -XGET http://10.250.140.215:9200/liguodong/_settings?pretty
+{
+  "liguodong" : {
+    "settings" : {
+      "index" : {
+        "creation_date" : "1495679177083",
+        "number_of_shards" : "4",
+        "number_of_replicas" : "0",
+        "uuid" : "VTsw4_8TR_O_7JplzQG-Og",
+        "version" : {
+          "created" : "5020099"
+        },
+        "provided_name" : "liguodong"
+      }
+    }
+  }
+}
+
+
+# 2、修改
+不存在索引liguodong时可以指定副本和分片，如果shb03已经存在则只能修改副本
+curl -XPUT http://10.250.140.215:9200/liguodong -d '{"settings":{"number_of_shards":4,"number_of_replicas":2}}'
+
+
+liguodong已经存在不能修改分片
+curl -XPUT http://10.250.140.215:9200/liguodong/_settings -d '{"index":{"number_of_replicas":2}}'
+
+
+curl -XGET 'http://10.250.140.215:9200/liguodong/_search?pretty'
+{
+  "took" : 2,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 4,
+    "successful" : 4,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 0,
+    "max_score" : null,
+    "hits" : [ ]
+  }
+}
+```
+
+```
+mapping：我们在es中添加索引数据时不需要指定数据类型，
+es中有自动影射机制，字符串映射为string，数字映射为long。
+通过mappings可以指定数据类型是否存储等属性。
+
+
+1：查看mapping信息
+curl -XGET http://10.250.140.215:9200/liguodong/_mappings?pretty
+
+2：修改，通过mappings还可以指定分词器
+"analyzer": "ik_max_word",
+"search_analyzer": "ik_max_word"
+
+操作不存在的索引
+curl -XPUT http://172.22.1.133:9200/haha -d '{
+    "mappings": {
+        "emp": {
+            "properties": {
+                "name": {
+                    "type": "string", 
+                    "analyzer": "ik_max_word", 
+                    "search_analyzer": "ik_max_word"
+                }
+            }
+        }
+    }
+}'
+
+操作已存在的索引
+curl -XPUT http://172.22.1.133:9200/koko
+
+curl -XPOST http://172.22.1.133:9200/koko/emp/_mapping -d '{"properties":{"name":{"type":"text","analyzer":"ik_max_word"}}}'
+curl -XPOST http://172.22.1.133:9200/koko/stu/_mapping -d '{"properties":{"name":{"type":"text","analyzer":"ik_max_word","search_analyzer": "ik_max_word"}}}'
+
+
+
+
+
+```
+
 
 
 ### 创建一个新的索引
