@@ -374,7 +374,11 @@ https://github.com/bells/elasticsearch-analysis-dynamic-synonym
 http://blog.csdn.net/fenglailea/article/details/56845892
 http://ginobefunny.com/post/elasticsearch_dynamic_synonym_plugin/?utm_source=tuicool&utm_medium=referral
 
+官方文档
 https://www.elastic.co/guide/en/elasticsearch/reference/5.2/analysis-synonym-tokenfilter.html
+
+http://ginobefunny.com/post/elasticsearch_dynamic_synonym_plugin/?utm_source=tuicool&utm_medium=referral
+https://github.com/ginobefun/elasticsearch-dynamic-synonym
 
 cd elasticsearch-analysis-dynamic-synonym/target/releases
 # 解压缩
