@@ -22,6 +22,11 @@ keyword类型的数据只能完全匹配，适合那些不需要分词的数据�
 text当然就是全文检索需要分词的字段类型了。
 另外string类型暂时还在的，6.0会移除。
 
+
+内置字段
+_uid,_id,_type,_source,
+_all,_analyzer,_boost,_parent,
+_routing,_index,_size,_timestamp,_ttl
 ```
 
 
@@ -118,16 +123,121 @@ curl -XPOST http://172.22.1.133:9200/koko/stu/_mapping -d '{"properties":{"name"
 
 
 
-### 创建一个新的索引
+### 基本操作
 ```
+# 添加一条文档
 curl -XPUT "http://localhost:9200/blog"
-```
 
-### 添加一条文档
-```
+# 添加一条文档
 curl -XPUT "http://localhost:9200/blog/article/1" -d '{            
     "title":"test",
     "content":"test content"
+}'
+
+# 通过_source获取指定的字段
+curl -XGET "http://localhost:9200/blog/article/1?/_source=title"
+curl -XGET "http://localhost:9200/blog/article/1?/_source=title,content"
+curl -XGET "http://localhost:9200/blog/article/1?/_source"
+
+# 覆盖方式更新
+
+curl -XPUT "http://localhost:9200/blog/article/1" -d '{            
+    "title":"test update",
+    "content":"test content"
+}'
+
+# 通过_update API方式单独更新你想要更新的字段
+curl -XPOST "http://localhost:9200/blog/article/1/_update" -d '{ 
+    "doc": {
+        "content":"test content update"
+    }
+}'
+
+# 删除索引
+curl -XDELETE "http://localhost:9200/blog/article/1"
+curl -XDELETE "http://localhost:9200/blog/article"
+curl -XDELETE "http://localhost:9200/blog"
+
+
+# 同时获取多个文档 数组[]
+
+curl -XGET "http://localhost:9200/_mget" -d '{
+    "docs":[
+        {
+            "_index":"bank",
+            "_type":"bank_account",
+            "_id":1
+        },
+        {
+            "_index":"bank",
+            "_type":"bank_account",
+            "_id":2
+        },
+        {
+            "_index":"shark",
+            "_type":"shark_account",
+            "_id":15
+        },
+        {
+            "_index":"kop",
+            "_type":"kopdd",
+            "_id":15
+        }         
+    ]
+}
+'
+
+# 指定_source字段，获取想要的
+curl -XGET "http://localhost:9200/_mget" -d '{
+   "docs":[
+        {
+            "_index":"kop",
+            "_type":"kopdd",
+            "_id":15,
+            "_source":"play_name"
+        },
+        {
+            "_index":"kop",
+            "_type":"kopdd",
+            "_id":15,
+            "_source":"play_name"
+        }
+   ] 
+}'
+
+# 指定多个_source字段 数组的形式[]
+curl -XGET "http://localhost:9200/_mget" -d '{
+   "docs":[
+        {
+            "_index":"kop",
+            "_type":"kopdd",
+            "_id":15
+        },
+        {
+            "_index":"kop",
+            "_type":"kopdd",
+            "_id":15,
+            "_source":["play_name","speaker","text_entry"]
+        }
+   ] 
+}'
+
+
+# 获取相同index相同type下不同的ID的文档
+curl -XGET "http://localhost:9200/indexname/_mget" -d '{
+   "docs":[
+        { "_id":15 },
+        {
+            "_type":"kopdd",
+            "_id":32,
+            "_source":["play_name","speaker","text_entry"]
+        }
+   ] 
+}'
+
+# 简写
+curl -XGET "http://localhost:9200/indexname/_mget" -d '{
+   "ids":["6","28"] 
 }'
 ```
 
