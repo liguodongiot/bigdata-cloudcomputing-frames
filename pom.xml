@@ -17,6 +17,7 @@
         <module>redis-project</module>
         <module>kafka-project</module>
         <module>es-project</module>
+        <module>hbase-project</module>
     </modules>
 
     <properties>
@@ -354,4 +355,27 @@
         </dependency>
     </dependencies>
 
+    <!--默认仓库找不到对应jar包，添加仓库-->
+    <repositories>
+        <repository>
+            <id>cloudera-releases</id>
+            <url>https://repository.cloudera.com/artifactory/cloudera-repos</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <!--<repository>-->
+        <!--<id>repo1</id>-->
+        <!--<url>http://repo1.maven.org/maven2/</url>-->
+        <!--<releases>-->
+        <!--<enabled>true</enabled>-->
+        <!--</releases>-->
+        <!--<snapshots>-->
+        <!--<enabled>false</enabled>-->
+        <!--</snapshots>-->
+        <!--</repository>-->
+    </repositories>
 </project>

@@ -304,8 +304,9 @@ curl -XPUT http://172.22.1.133:9200/index
 # 2.create a mapping
 curl -XPOST http://172.22.1.133:9200/index/fulltext/_mapping -d '
 {
-    "fulltext": {
-             "_all": {
+    "fulltext": 
+    {
+        "_all": {
             "analyzer": "ik_max_word",
             "search_analyzer": "ik_max_word",
             "term_vector": "no",
@@ -534,6 +535,9 @@ curl -XPUT "http://172.22.1.133:9200/testsynonyms" -d '{
         }
     }
 }'
+
+# synonyms配置方式
+"synonyms" : ["阿迪, 阿迪达斯, adidasi => Adidas","Nike, 耐克, naike","中美,中国和美国"]
 
 # 测试同义词
 http://172.22.1.133:9200/testsynonyms/_analyze?pretty&analyzer=synonym&text=中美

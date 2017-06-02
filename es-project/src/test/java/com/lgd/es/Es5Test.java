@@ -75,10 +75,11 @@ public class Es5Test {
     @Test
     public void testIndex2() throws Exception {
         HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        hashMap.put("name", "中国人好棒");
-        hashMap.put("age", 25);
-        IndexResponse response = client.prepareIndex(index, type, "37").setSource(hashMap).execute().actionGet();
-        System.out.println(response.getId());
+        hashMap.put("name", "中国人非常棒");
+        hashMap.put("age", 36);
+        IndexResponse response = client.prepareIndex(index, type, "39").setSource(hashMap).execute().actionGet();
+        System.out.println(response.getId()+":"+response.getVersion());
+        //response.getShardInfo().ge
     }
 
     /**
@@ -199,9 +200,11 @@ public class Es5Test {
         DeleteRequest request = new DeleteRequest();
         request.index(index);
         request.type(type);
-        request.id("11");
+        request.id("37");
         DeleteResponse response = client.delete(request).get();
         System.out.println(response.getVersion());
+
+        System.out.println(response.getResult().getLowercase().equals("deleted"));
     }
 
 
