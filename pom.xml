@@ -28,6 +28,8 @@
         <commons-collections.version>3.2.2</commons-collections.version>
         <commons-collections4.version>4.1</commons-collections4.version>
         <commons-lang.version>2.6.0.redhat-6</commons-lang.version>
+        <commons-beanutils.version>1.9.3</commons-beanutils.version>
+        <commons-pool.version>1.6</commons-pool.version>
         <cglib.version>3.2.5</cglib.version>
         <elasticsearch.version>5.2.0</elasticsearch.version>
         <elasticsearch-spark.version>2.4.3</elasticsearch-spark.version>
@@ -272,6 +274,22 @@
                 <artifactId>hbase-client</artifactId>
                 <version>${hbase.cdh.version}</version>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.hbase/hbase -->
+<!--            <dependency>
+                <groupId>org.apache.hbase</groupId>
+                <artifactId>hbase</artifactId>
+                <version>${hbase.cdh.version}</version>
+            </dependency>-->
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons-beanutils.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-pool</groupId>
+                <artifactId>commons-pool</artifactId>
+                <version>${commons-pool.version}</version>
+            </dependency>
             <!-- log -->
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
@@ -366,27 +384,5 @@
         </dependency>
     </dependencies>
 
-    <!--默认仓库找不到对应jar包，添加仓库-->
-    <repositories>
-        <repository>
-            <id>cloudera-releases</id>
-            <url>https://repository.cloudera.com/artifactory/cloudera-repos</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <!--<repository>
-            <id>repo1</id>
-            <url>http://repo1.maven.org/maven2/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>-->
-    </repositories>
+
 </project>
