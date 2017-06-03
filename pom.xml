@@ -37,6 +37,8 @@
         <junit.version>4.12</junit.version>
         <kafka.version>0.8.2.2</kafka.version>
         <hadoop.version>2.6.2</hadoop.version>
+        <hadoop.cdh.version>2.6.0-mr1-cdh5.7.6</hadoop.cdh.version>
+        <hbase.cdh.version>1.2.0-cdh5.7.6</hbase.cdh.version>
         <mysql.version>5.1.41</mysql.version>
         <scala.version>2.11.7</scala.version>
         <scalatest.version>3.0.1</scalatest.version>
@@ -260,7 +262,16 @@
                 <artifactId>hadoop-mapreduce-client-shuffle</artifactId>
                 <version>${hadoop.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.apache.hadoop</groupId>
+                <artifactId>hadoop-core</artifactId>
+                <version>${hadoop.cdh.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.hbase</groupId>
+                <artifactId>hbase-client</artifactId>
+                <version>${hbase.cdh.version}</version>
+            </dependency>
             <!-- log -->
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
@@ -367,15 +378,15 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
-        <!--<repository>-->
-        <!--<id>repo1</id>-->
-        <!--<url>http://repo1.maven.org/maven2/</url>-->
-        <!--<releases>-->
-        <!--<enabled>true</enabled>-->
-        <!--</releases>-->
-        <!--<snapshots>-->
-        <!--<enabled>false</enabled>-->
-        <!--</snapshots>-->
-        <!--</repository>-->
+        <!--<repository>
+            <id>repo1</id>
+            <url>http://repo1.maven.org/maven2/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>-->
     </repositories>
 </project>
