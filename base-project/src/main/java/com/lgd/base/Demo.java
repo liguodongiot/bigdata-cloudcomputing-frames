@@ -1,5 +1,7 @@
 package com.lgd.base;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +20,10 @@ public class Demo {
 
         List list = new ArrayList<String>();
         System.out.println(list.size());
+
+        String answer = "  ";
+        System.out.println(StringUtils.isNotEmpty(answer)); //true
+        System.out.println(StringUtils.isNotBlank(answer)); //false
 
     }
 
