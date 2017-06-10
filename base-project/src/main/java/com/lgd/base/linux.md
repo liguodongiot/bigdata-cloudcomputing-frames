@@ -5,6 +5,8 @@
 adduser tommy  
 #修改密码
 passwd tommy   
+
+HGNXuJ01dX5
 ```
 
 ```
