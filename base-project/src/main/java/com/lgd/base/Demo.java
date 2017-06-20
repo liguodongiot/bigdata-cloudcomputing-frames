@@ -24,6 +24,10 @@ public class Demo {
         String answer = "  ";
         System.out.println(StringUtils.isNotEmpty(answer)); //true
         System.out.println(StringUtils.isNotBlank(answer)); //false
+        System.out.println(StringUtils.isBlank(answer));
+        String stri = null;
+        System.out.println(StringUtils.isBlank(""));
+        System.out.println(StringUtils.isBlank(stri));
 
     }
 

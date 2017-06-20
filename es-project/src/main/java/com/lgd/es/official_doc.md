@@ -2,7 +2,9 @@
 
 ```
 # 查看所有索引
-curl -XGET  http://172.22.1.133:9200/_cat/indices
+curl -XGET  http://10.250.140.215:9200/_cat/indices
+curl -XGET  http://172.22.1.28:9200/_cat/indices
+
 
 curl -XGET  http://172.22.1.133:9200/_all?pretty
 curl -XGET  http://172.22.1.133:9200/*?pretty

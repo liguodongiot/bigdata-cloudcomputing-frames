@@ -595,3 +595,28 @@ curl -XGET 'http://172.22.1.133:9200/testsynonyms/jdbc/_search?pretty' -d '
   }
 }'
 ```
+
+
+
+
+
+
+
+### kibana
+```
+
+# 配置kibana.yml
+elasticsearch.url: "http://10.250.140.215:9200"
+
+
+# 启动kibana
+进入kibana-5.2.0-windows-x86\bin>执行kibana.bat启动即可
+
+# 访问kibana
+http://127.0.0.1:5601
+```
+
+
+
+
+
