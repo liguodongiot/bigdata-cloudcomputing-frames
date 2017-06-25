@@ -20,13 +20,15 @@ public class EsUtils {
 
     private static TransportClient client;
 
-    private final static String HOSTNAME = "172.22.1.133";
+//    private final static String HOSTNAME = "172.22.1.28";
+    private final static String HOSTNAME = "192.168.199.106";
     private final static Integer PORT = 9300;
 
     private EsUtils() {
     }
 
-//    public TransportClient init() throws UnknownHostException {
+    //Version-2.4.5
+//    public static TransportClient init() throws UnknownHostException {
 //        /**
 //         * 1:通过 setting对象来指定集群配置信息
 //         */
@@ -41,22 +43,22 @@ public class EsUtils {
 //         * 通过setting来创建，若不指定则默认链接的集群名为elasticsearch
 //         * 链接使用tcp协议即9300
 //         */
-//        transportClient = TransportClient.builder().settings(setting).build()
+//        client = TransportClient.builder().settings(setting).build()
 //                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("127.0.0.1"),9300));
 //
 //        /**
 //         * 3：查看集群信息
 //         */
-//        List<DiscoveryNode> connectedNodes = transportClient.connectedNodes();
+//        List<DiscoveryNode> connectedNodes = client.connectedNodes();
 //        for(DiscoveryNode node : connectedNodes)
 //        {
 //            System.out.println("节点主机："+node.getHostAddress());
 //        }
 //
-//        return transportClient;
+//        return client;
 //    }
 
-
+    //Version-5.2.0
     public static TransportClient init() throws UnknownHostException {
         //设置集群名称
         Settings settings = Settings.builder()

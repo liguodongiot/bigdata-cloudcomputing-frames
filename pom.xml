@@ -33,6 +33,7 @@
         <alchim31.version>3.2.2</alchim31.version>
         <akka.version>2.4.14</akka.version>
         <commons.version>3.5</commons.version>
+        <commons-io.version>2.5</commons-io.version>
         <commons-collections.version>3.2.2</commons-collections.version>
         <commons-collections4.version>4.1</commons-collections4.version>
         <commons-lang.version>2.6.0.redhat-6</commons-lang.version>
@@ -42,6 +43,7 @@
         <commons-logging.version>1.2</commons-logging.version>
         <cglib.version>3.2.5</cglib.version>
         <elasticsearch.version>5.2.0</elasticsearch.version>
+        <!--<elasticsearch.version>2.4.5</elasticsearch.version>-->
         <elasticsearch-spark.version>2.4.3</elasticsearch-spark.version>
         <jedis.version>2.7.3</jedis.version>
         <log4j.version>2.7</log4j.version>
@@ -51,9 +53,9 @@
         <hadoop.version>2.6.2</hadoop.version>
         <hadoop.cdh.version>2.6.0-mr1-cdh5.7.6</hadoop.cdh.version>
         <hbase.cdh.version>1.2.0-cdh5.7.6</hbase.cdh.version>
-        <!--<lucene.version>6.4.0</lucene.version>-->
+        <lucene.version>6.4.0</lucene.version>
         <!--<lucene.version>4.9.1</lucene.version>-->
-        <lucene.version>3.0.2</lucene.version>
+        <!--<lucene.version>3.0.2</lucene.version>-->
         <logback.version>1.1.11</logback.version>
         <mysql.version>5.1.41</mysql.version>
         <maven-source-plugin.version>2.4</maven-source-plugin.version>
@@ -349,7 +351,11 @@
                 <artifactId>commons-dbcp</artifactId>
                 <version>${commons-dbcp.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
             <dependency>
                 <groupId>commons-pool</groupId>
                 <artifactId>commons-pool</artifactId>
