@@ -1,9 +1,9 @@
 
 
 ```
-#添加一个名为tommy的用户
+# 添加一个名为 tommy 的用户
 adduser tommy  
-#修改密码
+# 修改密码
 passwd tommy   
 
 HGNXuJ01dX5
