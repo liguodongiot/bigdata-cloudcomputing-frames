@@ -54,9 +54,6 @@
         <hadoop.version>2.6.2</hadoop.version>
         <hadoop.cdh.version>2.6.0-mr1-cdh5.7.6</hadoop.cdh.version>
         <hbase.cdh.version>1.2.0-cdh5.7.6</hbase.cdh.version>
-        <lucene.version>6.4.0</lucene.version>
-        <!--<lucene.version>4.9.1</lucene.version>-->
-        <!--<lucene.version>3.0.2</lucene.version>-->
         <logback.version>1.1.11</logback.version>
         <mysql.version>5.1.41</mysql.version>
         <maven-source-plugin.version>2.4</maven-source-plugin.version>
@@ -108,37 +105,7 @@
                 <artifactId>elasticsearch-spark_2.11</artifactId>
                 <version>${elasticsearch-spark.version}</version>
             </dependency>
-            <!--Lucene lib-->
-            <dependency>
-                <groupId>org.apache.lucene</groupId>
-                <artifactId>lucene-core</artifactId>
-                <version>${lucene.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.lucene</groupId>
-                <artifactId>lucene-queryparser</artifactId>
-                <version>${lucene.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.lucene</groupId>
-                <artifactId>lucene-analyzers</artifactId>
-                <version>${lucene.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.lucene</groupId>
-                <artifactId>lucene-queries</artifactId>
-                <version>${lucene.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.lucene</groupId>
-                <artifactId>lucene-highlighter</artifactId>
-                <version>${lucene.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.lucene</groupId>
-                <artifactId>lucene-memory</artifactId>
-                <version>${lucene.version}</version>
-            </dependency>
+
             <!--Scala lib-->
             <dependency>
                 <groupId>org.scala-lang</groupId>

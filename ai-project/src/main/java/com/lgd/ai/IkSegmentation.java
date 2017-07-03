@@ -9,7 +9,7 @@ import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
 /**
- * Describe:
+ * Describe: IK分词
  * https://github.com/yangyining/IKAnalyzer
  * Dictionary
  * @author: liguodong
