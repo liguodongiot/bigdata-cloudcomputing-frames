@@ -106,8 +106,9 @@ public class CosineSimilarAlgorithm {
 
     public static void main(String[] args) {
         // 要比较的两个字符串
-        String str1 = "今天天气好呀";
-        String str2 = "天气怎么样";
+        String str1 = "都半小时了";
+        String str2 = "怎么天天都提不到现，是你们网络还是我这边";
         System.out.println(getSimilarity(str1, str2));
+
     }
 }

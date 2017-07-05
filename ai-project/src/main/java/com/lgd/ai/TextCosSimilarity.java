@@ -83,15 +83,10 @@ public class TextCosSimilarity {
     }
 
     public static void main(String[] args) {
-        String s1 = "今天天气好呀";
-        String s2 = "天气怎么样";
+        String s1 = "怎么回事";
+        String s2 = "在吗。账户被锁定怎么回事";
         TextCosSimilarity similarity = new TextCosSimilarity(s1, s2);
         System.out.println(similarity.sim());
     }
-
-
-
-
-
 
 }

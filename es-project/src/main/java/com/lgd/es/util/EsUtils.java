@@ -6,18 +6,24 @@ import org.elasticsearch.action.admin.indices.alias.IndicesAliasesAction;
 import org.elasticsearch.action.admin.indices.alias.IndicesAliasesRequest;
 import org.elasticsearch.action.admin.indices.alias.IndicesAliasesRequestBuilder;
 import org.elasticsearch.action.admin.indices.alias.IndicesAliasesResponse;
+import org.elasticsearch.action.admin.indices.analyze.AnalyzeAction;
+import org.elasticsearch.action.admin.indices.analyze.AnalyzeRequestBuilder;
+import org.elasticsearch.action.admin.indices.analyze.AnalyzeResponse;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsResponse;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingResponse;
 import org.elasticsearch.action.admin.indices.settings.put.UpdateSettingsResponse;
 import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.client.IndicesAdminClient;
 import org.elasticsearch.client.Response;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.unit.TimeValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 /**
  * Describe:
@@ -114,6 +120,20 @@ public class EsUtils {
 //        client.admin().indices().prepareAnalyze(indexName,text)
 //                .get();
     }
+
+
+    public static void ik(EsParam esParam){
+        IndicesAdminClient indicesAdminClient = esParam.getClient().admin().indices();
+        AnalyzeRequestBuilder request = new AnalyzeRequestBuilder(indicesAdminClient, AnalyzeAction.INSTANCE,"faq_product_business","中华人民共和国国歌");
+        //request.setAnalyzer("ik_smart");
+        request.setTokenizer("ik_smart");
+        //request.setTokenizer("ik_max_word");
+
+        // Analyzer（分析器）、Tokenizer（分词器）
+        List<AnalyzeResponse.AnalyzeToken> listAnalysis = request.execute().actionGet().getTokens();
+        System.out.println(listAnalysis.get(0).getTerm());
+    }
+
 
 
 }

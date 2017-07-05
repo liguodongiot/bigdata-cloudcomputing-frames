@@ -13,6 +13,13 @@
     <artifactId>ai-project</artifactId>
     <version>1.0.0</version>
 
+    <properties>
+        <lucene.version>4.7.2</lucene.version>
+        <!--<lucene.version>5.5.4</lucene.version>-->
+        <!--<lucene.version>6.4.0</lucene.version>-->
+        <!--<elasticsearch.version>5.2.0</elasticsearch.version>-->
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.janeluo</groupId>
@@ -22,14 +29,19 @@
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-core</artifactId>
-            <version>4.7.2</version>
+            <version>${lucene.version}</version>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.elasticsearch</groupId>-->
+            <!--<artifactId>elasticsearch-analysis-ik</artifactId>-->
+            <!--<version>${elasticsearch.version}</version>-->
+        <!--</dependency>-->
     </dependencies>
 
 
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
-        <testSourceDirectory>src/test/java</testSourceDirectory>
+        <!--<testSourceDirectory>src/test/java</testSourceDirectory>-->
         <outputDirectory>target/classes</outputDirectory>
         <testOutputDirectory>target/test-classes</testOutputDirectory>
         <plugins>
