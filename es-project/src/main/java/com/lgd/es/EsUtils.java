@@ -21,7 +21,7 @@ public class EsUtils {
     private static TransportClient client;
 
 //    private final static String HOSTNAME = "172.22.1.28";
-    private final static String HOSTNAME = "192.168.199.106";
+    private final static String HOSTNAME = "10.250.140.89";
     private final static Integer PORT = 9300;
 
     private EsUtils() {
@@ -62,7 +62,7 @@ public class EsUtils {
     public static TransportClient init() throws UnknownHostException {
         //设置集群名称
         Settings settings = Settings.builder()
-                .put("cluster.name", "elasticsearch")
+                .put("cluster.name", "cd-platform-application") //elasticsearch
                 .put("client.transport.sniff", true)//启动嗅探功能
                 .build();
         //创建client

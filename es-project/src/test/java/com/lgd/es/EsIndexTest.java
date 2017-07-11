@@ -283,4 +283,13 @@ public class EsIndexTest {
 
     }
 
+    @Test
+    public void test11() throws Exception {
+        EsParam esParam = new EsParam.ParamBuilder(client,"liguodong_v2")
+                .setShards(1)
+                .setReplicas(0)
+                .build();
+        com.lgd.es.util.EsUtils.deleteDocumentByQuery(esParam);
+    }
+
 }

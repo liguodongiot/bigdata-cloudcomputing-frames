@@ -10,13 +10,12 @@ import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Describe: 通过HTTP请求方式
@@ -110,9 +109,12 @@ public class EsUrlUtils {
 //        String parameters = "{\"_source\":[\"ask\",\"answer\"],\"query\":{\"match\":{\"ask\":{\"query\":\"天气好呀\",\"minimum_should_match\":\"80%\"}}},\"timeout\":\"1s\"}";
 //        httpPostJson(apiURL,parameters);
 
-        String url = "http://10.250.140.12:9299/faq_product_business/_mapping?pretty";
-        String str = httpNoParams(url);
-        System.out.println(str);
+//        String url = "http://10.250.140.12:9299/faq_product_business/_mapping?pretty";
+//        String str = httpNoParams(url);
+//        System.out.println(str);
+
+        EsUrlUtils esUrlUtils = new EsUrlUtils();
+        System.out.println(esUrlUtils.getClass().getSimpleName());
     }
 
 

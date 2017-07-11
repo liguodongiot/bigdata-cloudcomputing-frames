@@ -2,6 +2,7 @@ package com.lgd.es.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.elasticsearch.action.ActionListener;
 import org.elasticsearch.action.admin.indices.alias.IndicesAliasesAction;
 import org.elasticsearch.action.admin.indices.alias.IndicesAliasesRequest;
 import org.elasticsearch.action.admin.indices.alias.IndicesAliasesRequestBuilder;
@@ -20,6 +21,9 @@ import org.elasticsearch.client.Response;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.unit.TimeValue;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.reindex.BulkIndexByScrollResponse;
+import org.elasticsearch.index.reindex.DeleteByQueryAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -132,6 +136,25 @@ public class EsUtils {
         // Analyzer（分析器）、Tokenizer（分词器）
         List<AnalyzeResponse.AnalyzeToken> listAnalysis = request.execute().actionGet().getTokens();
         System.out.println(listAnalysis.get(0).getTerm());
+    }
+
+
+    public static void deleteDocumentByQueryId(EsParam esParam) {
+        DeleteByQueryAction.INSTANCE.newRequestBuilder(esParam.getClient())
+                .filter(QueryBuilders.termQuery("id", 1L))
+                .source("faq_question_answer_chat")
+                .execute(new ActionListener<BulkIndexByScrollResponse>() {
+
+                    public void onResponse(BulkIndexByScrollResponse response) {
+                        long deleted = response.getDeleted();
+                        System.out.println(deleted);
+                    }
+
+                    public void onFailure(Exception e) {
+                        // Handle the exception
+                    }
+                });
+
     }
 
 
