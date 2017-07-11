@@ -12,7 +12,10 @@ IK 分词 `IkSegmentation`
 
 [文本相似度计算基本方法小结](http://blog.csdn.net/pelick/article/details/8741346)
 
-**皮尔逊相关系数** `PearsonCorrelationScore`
+**皮尔逊相关系数** 
+`PearsonCorrelationScore`
+`PearsonMain`
+`CallClass`
 
 [基于皮尔逊相关系数的相似度计算](http://blog.csdn.net/c_son/article/details/43876479)
 
