@@ -13,7 +13,7 @@ public class LevenshteinDis {
 //        String str1 = "相似度计算方法";
 //        String str2 = "文本相似项发现";
         String str1 = "今天天气好呀";
-        String str2 = "天气怎么样";
+        String str2 = "今天天气不错";
         levenshtein(str1, str2);
     }
 

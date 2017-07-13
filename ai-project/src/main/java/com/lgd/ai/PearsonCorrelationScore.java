@@ -28,10 +28,13 @@ public class PearsonCorrelationScore {
         Map<String, Double> roseMap = new HashMap<String, Double>();
         roseMap.put("Lady in the water", 2.5);
         roseMap.put("Snakes on a Plane", 3.5);
+
         roseMap.put("Just My Luck", 3.0);
+
         roseMap.put("Superman Returns", 3.5);
         roseMap.put("You, Me and Dupree", 2.5);
         roseMap.put("The Night Listener", 3.0);
+
         dataset.put("Lisa Rose", roseMap);
 
         // 初始化Jack Matthews 数据集
@@ -41,6 +44,7 @@ public class PearsonCorrelationScore {
         jackMap.put("Superman Returns", 5.0);
         jackMap.put("You, Me and Dupree", 3.5);
         jackMap.put("The Night Listener", 3.0);
+
         dataset.put("Jack Matthews", jackMap);
 
         // 初始化Jack Matthews 数据集
@@ -60,9 +64,8 @@ public class PearsonCorrelationScore {
 
     /**
      * @param person1
-     *            name
      * @param person2
-     *            name
+     *
      * @return 皮尔逊相关度值
      */
     public double sim_pearson(String person1, String person2) {
@@ -93,8 +96,7 @@ public class PearsonCorrelationScore {
         }
 
         double numerator = sumXY - sumX * sumY / N;
-        double denominator = Math.sqrt((sumX_Sq - sumX * sumX / N)
-                * (sumY_Sq - sumY * sumY / N));
+        double denominator = Math.sqrt((sumX_Sq - sumX * sumX / N) * (sumY_Sq - sumY * sumY / N));
 
         // 分母不能为0
         if (denominator == 0) {

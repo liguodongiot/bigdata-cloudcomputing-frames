@@ -20,3 +20,10 @@ IK 分词 `IkSegmentation`
 [基于皮尔逊相关系数的相似度计算](http://blog.csdn.net/c_son/article/details/43876479)
 
 [基于皮尔逊相关系数的相似度](http://blog.csdn.net/u011669700/article/details/54582915)
+
+
+**编辑距离(Levenshtein Distance)**
+
+[Levenshtein Distance算法实现简单文本相似度分析](http://williamx.blog.51cto.com/3629295/752730/)
+
+

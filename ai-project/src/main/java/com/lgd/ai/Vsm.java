@@ -14,26 +14,29 @@ import java.util.Set;
 
 public class Vsm {
 
-    public static double calCosSim(Map<String, Double> v1, Map<String, Double> v2) {
+    public static double calCosSim(Map<Character, Integer> v1, Map<Character, Integer> v2) {
 
-        double sclar = 0.0,norm1=0.0,norm2=0.0,similarity=0.0;
+        double sclar = 0.0,
+                norm1=0.0,
+                norm2=0.0,
+                similarity=0.0;
 
-        Set<String> v1Keys = v1.keySet();
-        Set<String> v2Keys = v2.keySet();
+        Set<Character> v1Keys = v1.keySet();
+        Set<Character> v2Keys = v2.keySet();
 
-        Set<String> both= new HashSet<>();
+        Set<Character> both= new HashSet<>();
         both.addAll(v1Keys);
         both.retainAll(v2Keys);
         System.out.println(both);
 
-        for (String str1 : both) {
+        for (Character str1 : both) {
             sclar += v1.get(str1) * v2.get(str1);
         }
 
-        for (String str1:v1.keySet()){
+        for (Character str1:v1.keySet()){
             norm1+=Math.pow(v1.get(str1),2);
         }
-        for (String str2:v2.keySet()){
+        for (Character str2:v2.keySet()){
             norm2+=Math.pow(v2.get(str2),2);
         }
 
@@ -47,19 +50,41 @@ public class Vsm {
 
     public static void main(String[] args) {
 
-        Map<String, Double> m1 = new HashMap<>();
-        m1.put("Hello", 1.0);
-        m1.put("css", 2.0);
-        m1.put("Lucene", 3.0);
+//        Map<String, Double> m1 = new HashMap<>();
+//        m1.put("Hello", 1.0);
+//        m1.put("css", 1.0);
+//        m1.put("Lucene", 1.0);
+//
+//        Map<String, Double> m2 = new HashMap<>();
+//        m2.put("Hello", 1.0);
+//        m2.put("Word", 1.0);
+//        m2.put("Hadoop", 1.0);
+//        m2.put("java", 1.0);
+//        m2.put("html", 1.0);
+//        m2.put("css", 1.0);
+        String string1 = "怎么回事";
+        String string2 = "在吗。账户被锁定怎么回事";
 
-        Map<String, Double> m2 = new HashMap<>();
-        m2.put("Hello", 1.0);
-        m2.put("Word", 2.0);
-        m2.put("Hadoop", 3.0);
-        m2.put("java", 4.0);
-        m2.put("html", 1.0);
-        m2.put("css", 2.0);
-        calCosSim(m1, m2);
+        Map<Character, Integer> aMap = new HashMap<>();
+
+        //统计每个汉字出现的次数
+        for (Character character1 : string1.toCharArray()) {
+            if (aMap.containsKey(character1)) {
+                aMap.put(character1,aMap.get(character1)+1);
+            } else {
+                aMap.put(character1, 1);
+            }
+        }
+
+        Map<Character, Integer> bMap = new HashMap<>();
+        for (Character character2 : string2.toCharArray()) {
+            if (bMap.containsKey(character2)) {
+                bMap.put(character2,bMap.get(character2)+1);
+            } else {
+                bMap.put(character2, 1);
+            }
+        }
+        calCosSim(aMap, bMap);
 
     }
 }
