@@ -27,3 +27,4 @@ IK 分词 `IkSegmentation`
 [Levenshtein Distance算法实现简单文本相似度分析](http://williamx.blog.51cto.com/3629295/752730/)
 
 
+### word2vector
