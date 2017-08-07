@@ -57,7 +57,11 @@ public class DemoMain {
     }
 
     public static void main(String[] args) {
-        String x = doPost("http://lavasoft.blog.51cto.com/62575/64994", new HashMap());
+        //String x = doPost("http://lavasoft.blog.51cto.com/62575/64994", new HashMap());
+//        Map<String,String> map = new HashMap<>();
+//        map.put("time","1234567");
+        String x = doPost("http://localhost:8100/extStopWordDic/updateStopWord?time=1234567", new HashMap<>());
+
         System.out.println(x);
     }
 }

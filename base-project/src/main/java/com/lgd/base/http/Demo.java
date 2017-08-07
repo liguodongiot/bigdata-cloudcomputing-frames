@@ -11,6 +11,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EntityUtils;
 
@@ -33,9 +34,42 @@ public class Demo {
 //        String result = doPost(url,jsonObject);
 //        System.out.println(result);
 
-        String result = doGet();
-        System.out.println(result);
+//        String result = doGet();
+//        System.out.println(result);
+        doGetReq();
     }
+
+
+    public static void doGetReq(){
+        String urlNameString = "http://localhost:8100/extStopWordDic/updateStopWord?lastTimestamp=1234";
+        String result = "";
+        try {
+            // 根据地址获取请求
+            HttpGet request = new HttpGet(urlNameString);//这里发送get请求
+            // 获取当前客户端对象
+            HttpClient httpClient = HttpClientBuilder.create().build();
+            // 通过请求对象获取响应对象
+            HttpResponse response = httpClient.execute(request);
+
+            // 判断网络连接状态码是否正常
+            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+                result= EntityUtils.toString(response.getEntity(),"utf-8");
+                System.out.println(result);
+                JSONObject jsonObject = JSONObject.parseObject(result);
+                String isUpdate = jsonObject.get("isUpdate").toString();
+                System.out.println(isUpdate);
+                Boolean isFlag = Boolean.parseBoolean(isUpdate);
+                if(isFlag) {
+                    JSONArray jsonArray =jsonObject.getJSONArray("stopWordList");
+                    System.out.println(jsonArray.get(1).toString());
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public static String doPost(String url,JSONObject json){
         DefaultHttpClient client = new DefaultHttpClient();

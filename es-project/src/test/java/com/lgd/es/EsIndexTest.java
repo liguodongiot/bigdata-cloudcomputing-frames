@@ -289,7 +289,7 @@ public class EsIndexTest {
                 .setShards(1)
                 .setReplicas(0)
                 .build();
-        com.lgd.es.util.EsUtils.deleteDocumentByQuery(esParam);
+        //com.lgd.es.util.EsUtils.deleteDocumentByQuery(esParam);
     }
 
 }

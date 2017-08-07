@@ -8,3 +8,13 @@ mvn install:install-file -Dfile=D:\jar\commons-lang-2.6.0.redhat-6.jar -DgroupId
 ```
 mvn clean package deploy
 ```
+
+### 打包，忽略测试
+```
+mvn clean package -Pdev  -Dmaven.test.skip=true
+```
+
+### 查看依赖树
+```
+mvn dependency:tree > tree.log
+```
