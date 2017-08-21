@@ -83,7 +83,7 @@
 //        return response;
 //    }
 //    public static void main(String[] args) {
-//        String url = "http://10.250.140.12:8500/xma.html?source=zfb_b&product=virtual_card&debug=true";
+//        String url = "http://10.250.140.12:8500/ddd.html?source=zfb_b&product=virtual_card&debug=true";
 ////        String x = doPost(url, new HashMap());
 ////        System.out.println(x);
 //

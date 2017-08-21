@@ -294,8 +294,8 @@ curl 'http://172.22.1.133:9200/megacorp/_analyze?analyzer=ik_smart&pretty=true' 
 
 
 Analyzer(分析器): ik_smart,ik_max_word , Tokenizer(分词器):ik_smart,ik_max_word
-http://172.22.1.133:9200/xma_faq_dev/_analyze?text=中华人民共和国MN&tokenizer=ik_smart
-http://172.22.1.133:9200/xma_faq_dev/_analyze?text=中华人民共和国MN&tokenizer=ik_max_word
+http://172.22.1.133:9200/ddd_faq_dev/_analyze?text=中华人民共和国MN&tokenizer=ik_smart
+http://172.22.1.133:9200/ddd_faq_dev/_analyze?text=中华人民共和国MN&tokenizer=ik_max_word
 
 
 # 1.create a index

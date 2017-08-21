@@ -71,7 +71,7 @@ public class MysqlToEsTest {
 
     @Test
     public void testFormMysqlToEs() {
-        String index = "xma_faq_dev";
+        String index = "ddd_faq_dev";
         String type = "correct_answer_info";
         List<CorrentAnswerInfo> list = new ArrayList<CorrentAnswerInfo>(10);
 

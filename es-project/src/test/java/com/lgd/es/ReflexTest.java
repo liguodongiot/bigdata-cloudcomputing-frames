@@ -25,7 +25,7 @@ import java.util.Map;
  */
 public class ReflexTest {
 
-    String index = "xma_faq_dev";
+    String index = "ddd_faq_dev";
     String type = "correct_answer_info";
     TransportClient client;
 
