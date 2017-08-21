@@ -18,3 +18,9 @@ ps -aux | grep pid
 ```
 
 
+```
+# 查看各文件夹大小
+du -h --max-depth=1
+```
+
+

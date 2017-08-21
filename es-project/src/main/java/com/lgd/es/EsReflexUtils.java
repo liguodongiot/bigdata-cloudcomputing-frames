@@ -31,7 +31,7 @@ public class EsReflexUtils {
         // 设置client.transport.sniff为true来使客户端去嗅探整个集群的状态，
         // 把集群中其它机器的ip地址加到客户端中，
         Settings settings = Settings.builder()
-                .put("cluster.name", "cd-platform-application")
+                .put("cluster.name", "es-clustername")
                 .put("client.transport.sniff", true)
                 .build();
         Class<?> clazz = null;

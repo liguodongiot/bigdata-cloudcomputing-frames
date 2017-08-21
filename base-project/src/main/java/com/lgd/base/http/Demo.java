@@ -103,7 +103,7 @@ public class Demo {
     public static String doGet(){
         //String urlTemplate = "http://10.250.140.12:8510/frontC/chat?source=%s&product=%s&debug=true&sessionId=%s&ask=%s";
         //String urlNameString = String.format(urlTemplate,"zfb_b","virtual_card","2C82DCC6584B30A12C24A403859F0633","你好");
-        String urlNameString = "http://xmafront.msxf.com/frontC/chat?source=zfb_b&product=virtual_card&debug=true&sessionId=77fb54bc1c73448d860a946b728937e6&ask=一天0.0483%月利率是多少？";
+        String urlNameString = "http://fdfff/frontC/chat?source=zfb_b&product=virtual_card&debug=true&sessionId=77fb54bc1c73448d860a946b728937e6&ask=一天0.0483%月利率是多少？";
         String result="";
         try {
             // 根据地址获取请求
