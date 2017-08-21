@@ -419,7 +419,7 @@ public class Es5Test {
 
     }
 
-    String indexAnswer = "xma_faq_dev";
+    String indexAnswer = "ddd_faq_dev";
     String typeAnswer = "correct_answer_info";
     @Test
     public void testAnswerDsl() {
