@@ -37,6 +37,8 @@ public class UserInfo {
         this.age = age;
     }
 
+    public UserInfo(){}
+
     public UserInfo(Long id, String userName, Integer age) {
         this.id = id;
         this.userName = userName;

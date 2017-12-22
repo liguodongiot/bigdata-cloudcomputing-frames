@@ -1,7 +1,10 @@
 package com.lgd.base;
 
+import com.lgd.base.definesort.UserInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
@@ -9,6 +12,8 @@ import java.util.*;
  * Created by liguodong on 2017/4/23.
  */
 public class Demo {
+
+    private static final Logger LOGGER  = LoggerFactory.getLogger(Demo.class);
 
 //    public static void main(String[] args) {
 //
@@ -96,16 +101,28 @@ public class Demo {
 //        System.out.println(new DateTime(System.currentTimeMillis()).toDate().getTime());
 //    }
 
+//    public static void main(String[] args) {
+//        String str = "狮子座在2016年11";
+//        System.out.println(str.length());
+//
+//
+//        System.out.println(str.substring(0,10));
+//
+//    }
+
+
     public static void main(String[] args) {
-        String str = "狮子座在2016年11";
-        System.out.println(str.length());
 
-
-        System.out.println(str.substring(0,10));
-
-
-
+        UserInfo userInfo = new UserInfo();
+        userInfo.setAge(123);
+        updateUserInfo(userInfo);
+        System.out.println(userInfo.getAge());
+        LOGGER.info("userInfo:{}",userInfo);
     }
 
+
+    public static void updateUserInfo(UserInfo userInfo){
+        userInfo.setAge(11);
+    }
 
 }
