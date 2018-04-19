@@ -1,0 +1,1 @@
+select acct_no,contra_no from test_peng1 limit 10

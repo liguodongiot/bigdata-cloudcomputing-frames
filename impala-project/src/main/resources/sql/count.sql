@@ -1,0 +1,1 @@
+select count(*) from test_peng1 limit 10

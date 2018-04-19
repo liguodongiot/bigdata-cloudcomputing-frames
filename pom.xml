@@ -20,6 +20,7 @@
         <module>hbase-project</module>
         <module>lucene-project</module>
         <module>ai-project</module>
+        <module>impala-project</module>
     </modules>
     <!--<parent>-->
     <!--<groupId>org.springframework.boot</groupId>-->

@@ -42,7 +42,7 @@ object Person{
 }
 
 
-object Demo {
+object impala.Demo {
 
   def main(args: Array[String]): Unit = {
     val p = new Person
