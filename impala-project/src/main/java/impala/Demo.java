@@ -20,7 +20,7 @@ import java.sql.*;
  */
 public class Demo {
     private static final String JDBC_DRIVER = "com.cloudera.impala.jdbc41.Driver";
-    private static final String CONNECTION_URL = "jdbc:impala://10.250.20.112:21050/dsst";
+    private static final String CONNECTION_URL = "jdbc:impala://10.21.20.112:21050/dsst";
     protected final static Logger LOGGER  = LoggerFactory.getLogger(Demo.class);
 
     public static void main(String[] args) {
@@ -32,8 +32,8 @@ public class Demo {
             Class.forName(JDBC_DRIVER);
             con = DriverManager.getConnection(CONNECTION_URL);
 
-            //InputStream inputStream = Demo.class.getResourceAsStream("/sql/show_table.sql");
-            InputStream inputStream = Demo.class.getResourceAsStream("/sql/count.sql");
+            InputStream inputStream = Demo.class.getResourceAsStream("/sql/show_table.sql");
+            //InputStream inputStream = Demo.class.getResourceAsStream("/sql/count.sql");
             String sql;
             try {
                 sql = IOUtils.toString(inputStream,"UTF-8");
