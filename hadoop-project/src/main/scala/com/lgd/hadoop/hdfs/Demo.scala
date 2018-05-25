@@ -8,7 +8,7 @@ import org.apache.hadoop.fs.{FileStatus, FileSystem, Path}
 /**
   * Created by liguodong on 2017/3/23.
   */
-object impala.Demo {
+object Demo {
 
   private val PATH = "hdfs://ubuntu:8020"
   private val DIR = "/"
