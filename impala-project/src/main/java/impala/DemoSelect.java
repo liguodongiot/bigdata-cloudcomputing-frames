@@ -20,7 +20,7 @@ import java.sql.*;
  */
 public class DemoSelect {
     private static final String JDBC_DRIVER = "com.cloudera.impala.jdbc41.Driver";
-    private static final String CONNECTION_URL = "jdbc:impala://10.22.31.112:21050/dsst";
+    private static final String CONNECTION_URL = "jdbc:impala://10.22.31.2:21050/ewe";
     protected final static Logger LOGGER  = LoggerFactory.getLogger(DemoSelect.class);
 
     public static void main(String[] args) {

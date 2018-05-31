@@ -1,11 +1,8 @@
 package impala;
 
-import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.*;
 
 /**
@@ -18,10 +15,11 @@ import java.sql.*;
  * @version 1.0.0
  * @date 2018/4/18 16:09 星期三
  */
-public class Demo {
-    private static final String JDBC_DRIVER = "com.cloudera.impala.jdbc41.Driver";
-    private static final String CONNECTION_URL = "jdbc:impala://10.33.20.112:21050/ee";
-    protected final static Logger LOGGER  = LoggerFactory.getLogger(Demo.class);
+public class DemoHiveTest {
+
+    private static final String JDBC_DRIVER = "org.apache.hive.jdbc.HiveDriver";
+    private static final String CONNECTION_URL = "jdbc:hive2://10.250.322.43:21050/;auth=noSasl";
+    protected final static Logger LOGGER  = LoggerFactory.getLogger(DemoHiveTest.class);
 
     public static void main(String[] args) {
         Connection con = null;
@@ -32,15 +30,8 @@ public class Demo {
             Class.forName(JDBC_DRIVER);
             con = DriverManager.getConnection(CONNECTION_URL);
 
-            InputStream inputStream = Demo.class.getResourceAsStream("/sql/show_table.sql");
-            //InputStream inputStream = Demo.class.getResourceAsStream("/sql/count.sql");
-            String sql;
-            try {
-                sql = IOUtils.toString(inputStream,"UTF-8");
-            } catch (IOException e) {
-                System.out.println("IO error. "+e);
-                return;
-            }
+            String sql="show databases;";
+
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
