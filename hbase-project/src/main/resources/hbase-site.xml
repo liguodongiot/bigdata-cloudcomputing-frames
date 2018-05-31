@@ -92,7 +92,7 @@
   </property>
   <property>
     <name>hbase.zookeeper.quorum</name>
-    <value>gz-Public-dev-app3-140-215.msfinance.host,gz-Public-dev-app5-140-89.msfinance.host,gz-Public-dev-app4-140-12.msfinance.host</value>
+    <value>gz-Public-dev-app3-140-ds.xsd.host,gz-Public-dev-app5-140-fds.fdsa.host,gz-Public-dev-fdsa-140-12.fdas.host</value>
   </property>
   <property>
     <name>hbase.zookeeper.property.clientPort</name>

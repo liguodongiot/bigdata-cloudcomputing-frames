@@ -10,7 +10,6 @@ import java.util.UUID;
 
 /**
  * <p>Project: xma-faq</p>
- * <p>Package: com.msxf.xma.faq.rest</p>
  * <p>Title: </p>
  * <p>Description: </p>
  *
