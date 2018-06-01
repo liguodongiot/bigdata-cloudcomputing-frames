@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 
 /**
  * <p>Project: bigdata-frames</p>
@@ -44,10 +44,9 @@ public class HdfsKerberos {
         conf.set(USER_NAME_KEY, "finance");
 
         login(conf);
-        //System.out.println(loadHdfsFile("hdfs://gz-public-dev-app4-140-12.ddssd.host:8020/user/finance/test/part-m-00000"));
 
 
-        System.out.println(loadHdfsFile("hdfs://nameservice1/user/finance/test/part-m-00000"));
+        System.out.println(loadHdfsFile("/user/hive/warehouse/ai_data.db/test_hive/part-m-00000"));
     }
 
     public static List<String> loadHdfsFile(String filePath){
@@ -69,7 +68,7 @@ public class HdfsKerberos {
     }
 
     public static void login(Configuration hdfsConfig) throws IOException {
-        boolean securityEnabled = true;//UserGroupInformation.isSecurityEnabled();
+        boolean securityEnabled = UserGroupInformation.isSecurityEnabled();
         if (securityEnabled) {
             String keytab = conf.get(KEYTAB_FILE_KEY);
             if (keytab != null) {
