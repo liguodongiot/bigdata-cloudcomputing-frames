@@ -1,4 +1,4 @@
-package pers.lgd.lucene;
+package com.lgd.lucene;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

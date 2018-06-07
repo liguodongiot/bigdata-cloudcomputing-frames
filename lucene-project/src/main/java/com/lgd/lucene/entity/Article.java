@@ -1,4 +1,4 @@
-package pers.lgd.lucene.entity;
+package com.lgd.lucene.entity;
 
 /**
  * Created by liguodong on 2017/6/10.

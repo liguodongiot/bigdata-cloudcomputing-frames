@@ -1,4 +1,4 @@
-package pers.lgd.lucene.simple;
+package com.lgd.lucene.simple;
 
 import java.io.File;
 import java.io.FileFilter;

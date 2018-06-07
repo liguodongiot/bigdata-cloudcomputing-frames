@@ -1,4 +1,4 @@
-package pers.lgd.lucene;
+package com.lgd.lucene;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
