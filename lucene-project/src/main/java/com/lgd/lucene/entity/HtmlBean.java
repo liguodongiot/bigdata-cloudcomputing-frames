@@ -39,5 +39,14 @@ public class HtmlBean {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    @Override
+    public String toString() {
+        return "HtmlBean{" +
+                "title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }
 
